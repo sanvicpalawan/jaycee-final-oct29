@@ -29,7 +29,7 @@ The whole product is a **single self-contained HTML document**: 3,363 lines, spl
 
 | Layer | Technology | Where | Notes |
 |---|---|---|---|
-| Markup | HTML5 | `index.html` body | Semantic landmarks (`header`, `nav`, `main`, 11 `section`, `footer`), 53 ARIA attributes |
+| Markup | HTML5 | `index.html` body | Semantic landmarks (`header`, `nav`, `main`, 11 `section`, `footer`), 37 ARIA attributes |
 | Styling | Hand-written CSS3 | `<style>`, lines 12–985 | Custom design-token system (CSS custom properties). No preprocessor, no framework classes |
 | Layout | CSS Grid + Flexbox | throughout | 13 media queries at 420 / 600 / 768 / 900 / 1024 px breakpoints |
 | Behavior | JavaScript (ES6+, vanilla) | 2 inline `<script>` blocks | IIFE-scoped, `'use strict'`, no modules, no transpilation |
@@ -83,7 +83,7 @@ Not present: dependency manifests, locks, CI, linters, tests, analytics, service
 └── <script src="scripts/app.js" defer> ................ 328
 ```
 
-The document is a shell: 112 `id` attributes exist almost entirely as render targets that `app.js` fills from its content model.
+The document is a shell: 109 `id` attributes exist almost entirely as render targets that `app.js` fills from its content model.
 
 ### `styles/main.css` — 974 lines
 
@@ -205,7 +205,7 @@ Key consequences of this design:
 
 - **Saving re-renders the whole page.** Each text tab ends in a `Save changes` button that runs `bind()` → `saveState()` + `renderAll()`; structural actions (reorder, add, delete, logo approval) commit immediately. Text edits are intentionally save-gated so the page does not thrash on every keystroke. Because `renderAll()` replaces DOM nodes, all event wiring lives in separate `wire*()` helpers that re-bind afterwards.
 - **Content lives in the visitor's browser, not on a server.** An edit made in the CMS is visible only in that browser profile. It does not reach other visitors, because `index.html` is a static file. The documented workflow for that is Export JSON → hand-edit the `DEFAULT` object / re-import.
-- **Markup is duplicated conceptually**: `DEFAULT` holds the copy, and the static HTML holds empty shells with matching `id`s (`#heroLine1`, `#footerCopy`, `#catCarousel`, …). 112 `id` attributes exist largely to serve as render targets.
+- **Markup is duplicated conceptually**: `DEFAULT` holds the copy, and the static HTML holds empty shells with matching `id`s (`#heroLine1`, `#footerCopy`, `#catCarousel`, …). 109 `id` attributes exist largely to serve as render targets.
 - **Images are remote.** 16 Unsplash URLs + a Google Maps iframe are the only network calls after the initial page load, apart from fonts and the Tailwind CDN script.
 
 ### The CSS technique worth knowing
@@ -248,7 +248,7 @@ Ordered by what I'd fix first.
 
 ### What's genuinely good
 
-Accessibility is above the norm for this class of project: 53 ARIA attributes, `aria-expanded`/`aria-pressed` maintained by JS, an `aria-live` toast region, ESC handling throughout, a full `prefers-reduced-motion` path that disables parallax and smooth scrolling, `:focus-visible` styling, and labeled landmarks. The design-token system is disciplined and would port cleanly to any component framework.
+Accessibility is above the norm for this class of project: 37 ARIA attributes in markup plus 12 managed at runtime, `aria-expanded`/`aria-pressed` maintained by JS, an `aria-live` toast region, ESC handling throughout, a full `prefers-reduced-motion` path that disables parallax and smooth scrolling, `:focus-visible` styling, and labeled landmarks. The design-token system is disciplined and would port cleanly to any component framework.
 
 ---
 

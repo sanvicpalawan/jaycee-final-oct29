@@ -60,7 +60,7 @@ Opened with the floating button or `Ctrl` / `⌘` + `Shift` + `A`.
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Markup | HTML5 | Semantic landmarks, 11 sections, 53 ARIA attributes |
+| Markup | HTML5 | Semantic landmarks, 11 sections, 37 ARIA attributes |
 | Styling | Hand-authored CSS3 | 703 rules on a full design-token system, in `styles/main.css` — no framework, no preprocessor |
 | Layout | CSS Grid + Flexbox | 13 media queries at 420 / 600 / 768 / 900 / 1024 px |
 | Behavior | Vanilla JavaScript (ES6+) | 92 functions across two strict-mode IIFEs in `scripts/app.js`; no bundler, no transpiler |
@@ -141,7 +141,7 @@ Editing a text field mutates state in memory; pressing **Save changes** commits 
 
 **Design system, not styling.** Color, spacing, radii, elevation and an 11-step fluid type scale all live in custom properties at the top of the file. Section rhythm is a single variable: `--section-y: clamp(80px, 10vw, 144px)`. Components consume tokens, so a rebrand is a handful of lines.
 
-**Accessibility.** 53 ARIA attributes with `aria-expanded` and `aria-pressed` maintained by JavaScript, labeled landmarks and sections, an `aria-live` toast region, focus-visible styling throughout, `Escape` closes every overlay, flip cards respond to `Enter` / `Space` / `Escape`, and the carousel supports keyboard scrolling with honest disabled states.
+**Accessibility.** 37 ARIA attributes in markup (plus 12 more managed at runtime), with `aria-expanded` and `aria-pressed` maintained by JavaScript, labeled landmarks and sections, an `aria-live` toast region, focus-visible styling throughout, `Escape` closes every overlay, flip cards respond to `Enter` / `Space` / `Escape`, and the carousel supports keyboard scrolling with honest disabled states.
 
 **Motion, respectfully.** A full `prefers-reduced-motion` path disables parallax and smooth scrolling and swaps animation for instant state changes. Scroll work is `requestAnimationFrame`-throttled on passive listeners, and entrance reveals use `IntersectionObserver`.
 
