@@ -1,81 +1,73 @@
 # JayCee Trading & Services
 
-A premium B2B food and supply web presence for JayCee Trading & Services, built to showcase imported meats, frozen seafood, dairy, cheese, and essentials for homes, restaurants, and hotels across Puerto Princesa and Palawan.
+This repository is the company profile and sales website for JayCee Trading & Services — a Palawan-based food and supply business focused on reliable product distribution for homes, restaurants, hotels, and commercial buyers.
 
-This project is a polished static marketing website with a built-in admin-style content editor for updating sections, products, stories, banners, and contact details without needing a separate front-end framework stack.
+This project represents our digital presence: a premium static web application designed to present the brand, communicate the product range, and provide a lightweight admin-style content manager for updating public-facing information.
 
-## Tech Stack
+## Computer Languages
 
 - HTML5
 - CSS3
-- JavaScript (vanilla ES modules / DOM scripting)
-- Tailwind CSS via CDN (`@tailwindcss/browser`)
-- Google Fonts (`Inter` + `Inter Tight`)
-- Responsive single-page layout
-- Custom in-browser admin editor / CMS-like interface
+- JavaScript (vanilla ES6+)
+- Tailwind CSS via CDN
 
-### Stack notes
+## Tech Stack
 
-The site is intentionally lightweight and fast: it works as a static front-end and uses inline styling + script logic rather than a full React/Vue/Next.js app. That keeps deployment simple and makes the admin experience feel like a lightweight content management layer on top of the marketing site.
+- Static front-end architecture
+- Responsive single-page marketing website
+- Embedded admin/editor interface
+- Google Fonts integration
+- CSS-driven design system and layout
+- Vanilla JavaScript for interactivity and CMS-like controls
 
-## Code Tree
+## What This Project Is
+
+This is a premium business website for a wholesale and retail food distribution company. It highlights product categories such as imported meats, frozen seafood, dairy, cheese, and frozen essentials. The site is designed to feel trustworthy, premium, and conversion-focused for B2B and consumer sales.
+
+## Company Profile
+
+JayCee Trading & Services supplies essential food and grocery products in and around Palawan, with an emphasis on consistency, quality, and dependable service. The website is structured to communicate professionalism, product availability, location coverage, and customer confidence.
+
+## Code Structure
 
 ```text
 jaycee-final-oct29/
-├── premium-jaycee-website-rebuild.zip   # packaged source archive
-├── README.md                             # project profile / repo landing page
-├── index.html                            # main storefront and content layout
-├── styles                                # embedded CSS inside index.html
-├── scripts                               # embedded JavaScript logic inside index.html
-├── assets                                # product, hero, and brand imagery referenced by the page
-├── admin                                 # in-page admin/editor UI and content management controls
-└── static content                       # sections for hero, categories, products, story, FAQ, location, CTA
+├── premium-jaycee-website-rebuild.zip   # packaged source archive for the web app
+├── README.md                             # repository/company profile
+├── index.html                            # main site markup and content
+├── style/system                          # embedded CSS design system and responsive styles
+├── script logic                          # embedded JavaScript for navigation, UI, and admin controls
+├── assets                                # imagery used for hero, products, and brand visuals
+├── admin panel                           # in-page CMS-like content editor
+└── public marketing sections             # hero, categories, story, FAQ, services, location, CTA
 ```
 
-> In the current build, the implementation is centered around a single-page `index.html` with design system CSS and interactive logic embedded directly in the page, rather than a large multi-folder codebase.
+## Admin Backend
 
-## About the Admin Backend
+The admin layer is not a separate database-backed backend. Instead, it functions as a lightweight content management experience built directly into the website.
 
-The project's admin layer is a lightweight custom backend-like experience built directly into the website rather than a separate server application.
+It supports:
 
-### What it does
+- updating hero and call-to-action text
+- managing categories and featured items
+- editing company story and services
+- updating business location and contact details
+- saving content through a front-end admin panel
 
-- Lets the business edit hero content, CTAs, and marketing copy
-- Manages product/service category blocks
-- Updates featured items and company story sections
-- Controls contact details, locations, and opening hours
-- Shows an admin panel with tabs, form fields, upload slots, and save actions
-- Provides a CMS-like interface for quick content updates without a full app backend
+This makes the project easy to deploy and maintain as a static marketing website while still giving the business a practical editing interface.
 
-### Current backend shape
+## How It Works
 
-This version is best described as:
+The project is a static website build with no heavy framework dependency. It runs as a front-end application and can be served locally or deployed to any static hosting platform.
 
-- Front-end admin editor
-- Local content management interface
-- Static-site publishing model
-- No production database or API layer in the shipped build
-
-In other words, the admin experience is designed as a practical content manager for a marketing website, not a full enterprise backend with authentication, user roles, and database persistence.
-
-## Project Focus
-
-JayCee is positioned as a distribution and supply partner for:
-
-- Imported meats
-- Frozen seafood
-- Dairy and cheese
-- Frozen essentials
-- Restaurant, hotel, and home supply orders
-
-The website emphasizes trust, product variety, fast delivery, and reliable service in Palawan.
-
-## Quick Start
-
-Because this is a static website, the simplest way to run it locally is:
+## Run Locally
 
 ```bash
-# from the project folder
+# extract the zip if needed
+unzip premium-jaycee-website-rebuild.zip
+
+# then serve the folder
+cd <extracted-folder>
 python -m http.server 8000
 ```
 
@@ -85,8 +77,6 @@ Then open:
 http://localhost:8000
 ```
 
-If the site is served as a packaged archive, extract the zip first and open the generated `index.html` in a browser or serve the folder with a static web server.
-
 ## Summary
 
-This project is a premium B2B food distribution website with a strong visual identity, responsive design, and a built-in admin-style content management interface. It is designed for fast deployment, easy content updates, and a polished brand presentation for JayCee Trading & Services.
+This repository is our company website and digital identity for JayCee Trading & Services. It combines a polished product marketing experience with a simple, admin-friendly content system, using a stack built around HTML, CSS, and JavaScript.
