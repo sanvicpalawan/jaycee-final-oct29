@@ -1,0 +1,3363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JayCee Trading & Services — Quality food. Reliable supply. Delivered across Palawan.</title>
+<meta name="description" content="JayCee Trading & Services distributes imported meats, frozen seafood, dairy, cheese and frozen essentials to homes, restaurants and hotels across Puerto Princesa and Palawan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root{
+  /* Colour */
+  --c-bg:#FFFFFF;
+  --c-band:#F7F7F5;
+  --c-ink:#0F1115;
+  --c-ink-2:#5B616B;
+  --c-ink-3:#9AA0A8;
+  --c-hairline:rgba(15,17,21,.08);
+  --c-accent:#B3261E;
+  --c-accent-dark:#8F1C16;
+  --c-green:#1E8E4A;
+  --c-green-dark:#17743C;
+  --c-overlay:rgba(10,10,12,.55);
+
+  /* Image fallbacks */
+  --img-meat:#5a2a24; --img-fish:#c9846b; --img-cheese:#d9b25a;
+  --img-bacon:#8c3b32; --img-fries:#d7a04a; --img-kitchen:#3a3a3c;
+
+  /* Spacing (8px system) */
+  --s-1:8px; --s-2:16px; --s-3:24px; --s-4:32px; --s-5:40px;
+  --s-6:48px; --s-8:64px; --s-10:80px; --s-12:96px; --s-15:120px; --s-18:144px;
+  --section-y:clamp(var(--s-10), 10vw, var(--s-18));
+
+  /* Radii */
+  --r-sm:10px; --r-md:16px; --r-lg:20px; --r-xl:24px; --r-pill:999px;
+
+  /* Shadows (soft, layered) */
+  --sh-1:0 1px 2px rgba(15,17,21,.04), 0 4px 12px rgba(15,17,21,.04);
+  --sh-2:0 2px 4px rgba(15,17,21,.04), 0 12px 32px rgba(15,17,21,.08);
+  --sh-3:0 4px 8px rgba(15,17,21,.05), 0 24px 64px rgba(15,17,21,.12);
+
+  /* Type — Inter Tight for display, Inter for UI/body (global product standard) */
+  --f-serif:"Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-display:"Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-head-weight:500;
+  --t-xs:clamp(.6875rem, .66rem + .1vw, .75rem);
+  --t-sm:clamp(.8125rem, .78rem + .15vw, .875rem);
+  --t-base:clamp(.9375rem, .9rem + .2vw, 1.0625rem);
+  --t-lg:clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+  --t-h3:clamp(1.25rem, 1.1rem + .7vw, 1.625rem);
+  --t-h2:clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+  --t-h1:clamp(2.5rem, 1.6rem + 4.5vw, 5.25rem);
+  --t-display:clamp(5rem, 3rem + 12vw, 11rem);
+
+  /* Motion */
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-flip:cubic-bezier(.4,.2,.2,1);
+  --dur:.6s;
+
+  /* Layout */
+  --container:1240px;
+  --gutter:clamp(20px, 4vw, 40px);
+  --nav-h:72px;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;width:100%;max-width:100%}
+body{
+  font-family:var(--f-sans);
+  font-size:var(--t-base);
+  line-height:1.65;
+  color:var(--c-ink);
+  background:var(--c-bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  width:100%;
+  max-width:100vw;
+  position:relative;
+}
+/* Aggressive horizontal-scroll guard on mobile */
+@media (max-width:768px){
+  .container{max-width:100%;padding-inline:16px;overflow-x:visible}
+  h1,h2,h3{max-width:100%;overflow-wrap:break-word;word-break:break-word}
+  p{overflow-wrap:break-word;word-break:break-word}
+  .section{padding-block:clamp(48px,12vw,72px)}
+  .flip-card,.flip,.cat,.feature-card,.svc,.ess{max-width:100%;min-width:0}
+  .marquee{overflow:hidden}
+  .marquee-track{animation-duration:50s}
+  body > *{max-width:100vw}
+}
+/* Belt-and-braces: hide any accidental horizontal overflow */
+@media (max-width:768px){
+  html,body{overflow-x:hidden}
+}
+.hero,.cta-final{overflow:hidden}
+img,video,iframe{display:block;max-width:100%;height:auto}
+/* Prevent grid overflow */
+[class*="grid-"],.grid-12,.featured,.essentials,.services,.location,.faq,.story,.footer-grid,.stats,.map-foot,.row{min-width:0}
+[class*="grid-"] > *,[class*="grid-"] > div,
+.grid-12 > *, .featured > *, .essentials > *, .services > *, .location > *, .faq > *, .story > *, .footer-grid > *, .stats > *, .map-foot > *, .row > * { min-width:0 }
+/* Ensure any fixed/full-bleed sections don't cause horizontal scroll */
+.hero,.cta-final{max-width:100%;overflow:hidden}
+section,footer,nav{max-width:100%}
+.footer-col li a{word-break:break-word;overflow-wrap:anywhere}
+.carousel{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.carousel *{max-width:100%}
+.marquee{max-width:100%;overflow:hidden}
+.marquee-track{max-width:none}
+address{overflow-wrap:anywhere;word-break:break-word}
+.footer-col .muted{display:block;line-height:1.5}
+.map-label{max-width:calc(100% - 40px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+.grid-12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-3)}
+.section{padding-block:var(--section-y)}
+.band{background:var(--c-band)}
+
+/* =========================================================
+   TYPOGRAPHY — a single, disciplined type system
+   Inter Tight for display headings, Inter for UI + body.
+   Optical sizing, tight tracking, tuned line-heights.
+   ========================================================= */
+.serif{font-family:var(--f-display);font-weight:500;letter-spacing:-.032em;line-height:1.05}
+.serif em{font-style:italic;font-weight:400;color:inherit;letter-spacing:-.025em}
+h1,h2,h3{font-family:var(--f-display);font-weight:var(--f-head-weight);letter-spacing:-.032em;line-height:1.06;text-wrap:balance}
+h1{font-size:var(--t-h1);letter-spacing:-.04em;line-height:1.01}
+h2{font-size:var(--t-h2);line-height:1.06}
+h3{font-size:var(--t-h3);letter-spacing:-.022em;line-height:1.18}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:400;letter-spacing:-.03em}
+/* Long headlines shouldn't fragment into orphans */
+h1,h2,h3{text-wrap:pretty}
+.eyebrow{
+  font-family:var(--f-sans);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--c-accent);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;line-height:1.4;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor;flex:none}
+.lede{color:var(--c-ink-2);font-size:var(--t-lg);line-height:1.62;max-width:56ch;font-weight:400;letter-spacing:-.005em}
+.muted{color:var(--c-ink-2)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-6)}
+.section-head h2{max-width:22ch}
+/* Numerals read as data, not decoration */
+.num,.stat .n,.story-year .num{font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+/* Small UI text */
+.link{letter-spacing:-.005em}
+.btn{letter-spacing:-.005em}
+
+/* Links w/ arrow */
+.link{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-sm);font-weight:600;color:var(--c-ink);transition:color .3s}
+.link svg{width:16px;height:16px;transition:transform .4s var(--ease-out)}
+.link:hover{color:var(--c-accent)}
+.link:hover svg{transform:translateX(4px)}
+
+/* Buttons */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;border-radius:var(--r-pill);font-weight:600;font-size:var(--t-sm);
+  line-height:1;white-space:nowrap;transition:background .3s,color .3s,box-shadow .3s,transform .3s var(--ease-out);
+  will-change:transform;
+}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--c-accent);color:#fff;box-shadow:0 8px 24px rgba(179,38,30,.22)}
+.btn-primary:hover{background:var(--c-accent-dark);box-shadow:0 12px 32px rgba(179,38,30,.3)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
+.btn-outline{background:#fff;color:var(--c-ink);box-shadow:inset 0 0 0 1px rgba(15,17,21,.14)}
+.btn-outline:hover{box-shadow:inset 0 0 0 1px rgba(15,17,21,.4)}
+.btn-green{background:var(--c-green);color:#fff;padding:11px 20px}
+.btn-green:hover{background:var(--c-green-dark)}
+.btn-sm{padding:11px 20px}
+
+/* =========================================================
+   PROGRESS BAR + NAV
+   ========================================================= */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:1001;background:transparent;pointer-events:none}
+.progress span{display:block;height:100%;background:var(--c-accent);transform-origin:left;transform:scaleX(0)}
+
+.nav{
+  position:sticky;top:0;z-index:1000;height:var(--nav-h);
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
+  transition:box-shadow .4s,background .4s;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+}
+.nav.is-scrolled{background:rgba(255,255,255,.92)}
+.nav.is-scrolled{box-shadow:0 1px 0 var(--c-hairline),0 8px 24px rgba(15,17,21,.04);background:rgba(255,255,255,.86)}
+.nav-inner{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--s-3)}
+.brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:600;font-size:1.0625rem;letter-spacing:-.02em;min-width:0}
+.brand strong{display:block;font-weight:600;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:clamp(120px,50vw,240px);letter-spacing:-.025em}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--c-ink);display:grid;place-items:center;color:#fff}
+.brand-mark svg{width:20px;height:20px}
+.brand small{display:block;font-family:var(--f-sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-ink-2);font-weight:600;line-height:1}
+.nav-links{display:flex;gap:var(--s-4);justify-self:center}
+.nav-links a{position:relative;font-size:var(--t-sm);font-weight:500;color:var(--c-ink-2);padding:6px 0;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--c-accent);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease-out)}
+.nav-links a:hover{color:var(--c-ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:var(--s-2)}
+.nav-right .tel{font-size:var(--t-sm);font-weight:500;color:var(--c-ink-2)}
+.burger{display:none;width:48px;height:48px;border-radius:var(--r-pill);place-items:center;position:relative;background:transparent;border:0;cursor:pointer;padding:0;flex:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;z-index:2}
+.burger span{position:absolute;left:14px;width:20px;height:2px;background:var(--c-ink);transition:transform .4s var(--ease-out),opacity .3s;pointer-events:none;border-radius:2px}
+.burger span:nth-child(1){transform:translateY(-6px)}
+.burger span:nth-child(3){transform:translateY(6px)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:var(--nav-h) 0 0 0;z-index:1002;background:rgba(255,255,255,.98);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  padding:var(--s-4) var(--gutter);display:flex;flex-direction:column;gap:var(--s-1);
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .4s,transform .4s var(--ease-out),visibility 0s .4s;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-menu.is-open{opacity:1;visibility:visible;transform:none;transition:opacity .4s,transform .4s var(--ease-out)}
+  .mobile-menu a{font-family:var(--f-display);font-weight:500;font-size:1.4rem;padding:16px 0;border-bottom:1px solid var(--c-hairline);letter-spacing:-.03em}
+  .mobile-menu .btn{margin-top:var(--s-3);align-self:stretch;width:100%;justify-content:center}
+  .mobile-menu [data-nav-cms]{display:block}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{position:relative;overflow:hidden;background:var(--c-bg);color:var(--c-ink);padding-block:clamp(24px,3.2vw,44px) clamp(48px,6vw,88px)}
+.hero-glow{position:absolute;top:-160px;right:-120px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(179,38,30,.07),rgba(179,38,30,0) 65%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4.5vw,64px);align-items:center}
+.hero-inner{position:relative;width:100%;min-width:0;padding:0}
+/* Status pill */
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:var(--r-pill);background:#fff;box-shadow:inset 0 0 0 1px var(--c-hairline),0 2px 10px rgba(15,17,21,.04);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c-ink-2);margin-bottom:clamp(18px,2.6vw,28px);max-width:100%}
+.hero-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--c-accent);box-shadow:0 0 0 3px rgba(179,38,30,.12);flex:none}
+.hero h1{max-width:13ch;margin-bottom:clamp(16px,2.2vw,24px);font-size:clamp(2.6rem,5vw,4.5rem);line-height:1.03;letter-spacing:-.042em;color:var(--c-ink);font-weight:var(--f-head-weight)}
+.hero h1 em{font-style:italic;font-weight:400;letter-spacing:-.035em}
+.hero .lede{color:var(--c-ink-2);max-width:44ch;font-size:clamp(1rem,1.1vw,1.1875rem);line-height:1.6;margin-bottom:clamp(26px,3vw,36px)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-ctas .btn{padding:15px 26px}
+.hero-ctas .btn-ghost{background:#fff;color:var(--c-ink);box-shadow:inset 0 0 0 1px rgba(15,17,21,.16);backdrop-filter:none;-webkit-backdrop-filter:none}
+.hero-ctas .btn-ghost:hover{background:var(--c-band);box-shadow:inset 0 0 0 1px rgba(15,17,21,.3)}
+.hero-foot{margin-top:clamp(26px,3.4vw,40px);padding-top:18px;border-top:1px solid var(--c-hairline);display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-ink-3);font-weight:600;max-width:520px}
+.hero-foot .scroll-hint{display:inline-flex;align-items:center;gap:9px;flex:none;color:var(--c-ink-2)}
+.hero-foot .scroll-hint i{width:1px;height:24px;background:var(--c-hairline);position:relative;overflow:hidden}
+.hero-foot .scroll-hint i::after{content:"";position:absolute;inset:0;background:var(--c-accent);transform:translateY(-100%);animation:scrollline 2.2s ease-in-out infinite}
+@keyframes scrollline{0%{transform:translateY(-100%)}60%{transform:translateY(100%)}100%{transform:translateY(100%)}}
+/* Editorial photo card */
+.hero-visual{position:relative;min-width:0}
+.hero-media{position:relative;isolation:isolate;aspect-ratio:4/4.4;border-radius:28px;overflow:hidden;background:var(--img-meat);box-shadow:0 32px 80px -28px rgba(15,17,21,.45),0 2px 8px rgba(15,17,21,.06)}
+.hero-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,12,0) 42%,rgba(10,10,12,.18) 70%,rgba(10,10,12,.6) 100%)}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;animation:kenburns 32s var(--ease-out) forwards;will-change:transform}
+@keyframes kenburns{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.1) translate3d(-1.2%,-1%,0)}}
+.hero-tag{position:absolute;z-index:2;top:16px;right:16px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:var(--r-pill);background:rgba(255,255,255,.9);backdrop-filter:blur(12px) saturate(150%);-webkit-backdrop-filter:blur(12px) saturate(150%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 4px 14px rgba(0,0,0,.12);font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--c-ink)}
+.hero-tag i{width:6px;height:6px;border-radius:50%;background:var(--c-accent)}
+.hero-glass{position:absolute;z-index:2;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.14);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);color:#fff;animation:floaty 7s ease-in-out infinite;will-change:transform}
+.hero-glass .ic{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
+.hero-glass .ic svg{width:19px;height:19px}
+.hero-glass .txt{display:block;min-width:0}
+.hero-glass b{display:block;font-size:.8125rem;font-weight:600;letter-spacing:-.005em;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-glass .lbl{display:block;font-size:.625rem;color:rgba(255,255,255,.75);letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-glass .go{margin-left:auto;opacity:.75;flex:none}
+.hero-glass .go svg{width:16px;height:16px}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+/* Mini proof row under CTA */
+.hero-proof{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)}
+.hero-proof .dots{display:flex}
+.hero-proof .dots i{width:18px;height:18px;border-radius:50%;background:#EAE7E1;box-shadow:0 0 0 2px #fff;margin-left:-6px}
+.hero-proof .dots i:first-child{margin-left:0;background:#D8D2CA}
+.hero-proof .dots i:nth-child(2){background:#C9B79F}
+.hero-proof .dots i:nth-child(3){background:#5a2a24}
+
+/* Masked line reveal */
+.reveal-line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em;min-width:0}
+.reveal-line > span{display:block;transform:translateY(110%);transition:transform 1.1s var(--ease-out);min-width:0;word-break:break-word;overflow-wrap:anywhere}
+.hero.is-ready .reveal-line > span{transform:translateY(0)}
+.hero.is-ready .reveal-line:nth-child(1) > span{transition-delay:.15s}
+.hero.is-ready .reveal-line:nth-child(2) > span{transition-delay:.27s}
+.hero.is-ready .reveal-line:nth-child(3) > span{transition-delay:.39s}
+.hero-fade{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.hero.is-ready .hero-fade{opacity:1;transform:none}
+.hero.is-ready .hero-fade.d1{transition-delay:.55s}
+.hero.is-ready .hero-fade.d2{transition-delay:.7s}
+.hero.is-ready .hero-fade.d3{transition-delay:.85s}
+.hero.is-ready .hero-fade.d4{transition-delay:1s}
+
+/* =========================================================
+   FLIP CARDS
+   ========================================================= */
+.flip{perspective:1200px;outline:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s var(--ease-flip);will-change:transform;min-width:0;max-width:100%}
+.flip-face{min-width:0;max-width:100%}
+.flip-front img{min-width:0}
+.flip:hover .flip-inner,.flip.is-flipped .flip-inner,.flip:focus-visible .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:inherit;overflow:hidden;transform:translateZ(0)}
+.flip-back{transform:rotateY(180deg);background:#fff;box-shadow:var(--sh-2);display:flex;flex-direction:column;justify-content:space-between;padding:var(--s-3);}
+.flip-back p{color:var(--c-ink-2);font-size:var(--t-sm);line-height:1.6}
+.flip-back .flip-kicker{font-size:var(--t-xs);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--c-accent);margin-bottom:10px}
+.flip-back h3{margin-bottom:10px}
+.flip:focus-visible{outline:2px solid var(--c-accent);outline-offset:4px}
+
+/* =========================================================
+   CATEGORY CAROUSEL
+   ========================================================= */
+.carousel-wrap{position:relative}
+.carousel-wrap .carousel{margin:0 -4px;padding:4px 4px 16px}
+@media (max-width:768px){
+  .carousel-wrap{overflow:visible}
+  .carousel-wrap .carousel{margin:0;padding:0}
+}
+.carousel{
+  display:flex;gap:var(--s-3);overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:var(--s-1) 0 var(--s-3);margin:0;
+  scrollbar-width:none;-ms-overflow-style:none;scroll-padding-inline:0;
+}
+.carousel::-webkit-scrollbar{display:none}
+.cat{flex:0 0 calc((100% - var(--s-3)*4)/5);min-width:208px;scroll-snap-align:start;aspect-ratio:4/4.6;border-radius:var(--r-lg)}
+.cat .flip-front{background:var(--fallback,var(--img-meat));box-shadow:var(--sh-1)}
+.cat .flip-front img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out)}
+.cat .flip-front::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,10,12,.7) 100%)}
+.cat .cat-label{position:absolute;left:20px;right:20px;bottom:18px;z-index:1;color:#fff;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.cat .cat-label{flex-wrap:wrap;gap:4px}
+.cat .cat-label h3{font-size:1.2rem;color:#fff}
+.cat .cat-label small{white-space:nowrap}
+.cat .cat-label small{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:600;opacity:.75}
+.carousel-nav{display:flex;gap:10px}
+.arrow-btn{width:44px;height:44px;border-radius:var(--r-pill);display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px rgba(15,17,21,.12);transition:box-shadow .3s,background .3s,color .3s}
+.arrow-btn:hover{background:var(--c-ink);color:#fff;box-shadow:none}
+.arrow-btn svg{width:18px;height:18px}
+.arrow-btn[disabled]{opacity:.35;pointer-events:none}
+
+/* =========================================================
+   FEATURED CARDS
+   ========================================================= */
+.featured{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-3)}
+.feature-card{aspect-ratio:4/5;border-radius:var(--r-xl)}
+.feature-card .flip-front{background:var(--fallback,var(--img-meat));box-shadow:var(--sh-2)}
+.feature-card .flip-front img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out)}
+.feature-card:hover .flip-front img{transform:scale(1.06)}
+.feature-card .flip-front::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.05) 30%,rgba(10,10,12,.75) 100%)}
+.feature-card .fc-body{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:var(--s-4);color:#fff}
+.feature-card .fc-body .eyebrow{color:rgba(255,255,255,.75);margin-bottom:10px}
+.feature-card .fc-body h3{font-size:clamp(1.4rem,1.2rem + .9vw,1.9rem);color:#fff;margin-bottom:12px}
+.feature-card .fc-arrow{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-sm);font-weight:600;opacity:.85}
+.feature-card .fc-arrow svg{width:18px;height:18px;transform:translateX(-6px);opacity:0;transition:transform .5s var(--ease-out),opacity .5s}
+.feature-card:hover .fc-arrow svg{transform:none;opacity:1}
+.feature-card .flip-back{padding:var(--s-4)}
+.feature-card .flip-back ul{display:grid;gap:6px;margin-top:var(--s-2);font-size:var(--t-sm);color:var(--c-ink-2)}
+.feature-card .flip-back li{display:flex;gap:10px;align-items:center}
+.feature-card .flip-back li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--c-accent);flex:none}
+
+/* =========================================================
+   LOGO MARQUEE
+   ========================================================= */
+.trusted{text-align:center}
+.trusted h2{font-size:var(--t-h3);margin-bottom:var(--s-6)}
+.marquee{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:clamp(48px,7vw,96px);animation:marquee 38s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.logo{flex:none;display:inline-flex;align-items:center;gap:10px;height:40px;filter:grayscale(1);opacity:.55;transition:filter .5s,opacity .5s;font-family:var(--f-sans);white-space:nowrap}
+.logo:hover{filter:grayscale(0);opacity:1}
+.logo svg{height:30px;width:auto}
+.logo .wm{font-family:var(--f-sans);font-size:1rem;font-weight:600;letter-spacing:-.02em}
+.logo .wm.sans{font-family:var(--f-sans);font-weight:600;letter-spacing:.02em;font-size:1.05rem}
+.logo .wm.caps{font-family:var(--f-sans);font-weight:600;letter-spacing:.3em;font-size:.85rem;text-transform:uppercase}
+
+/* =========================================================
+   STORY ROWS (alternating)
+   ========================================================= */
+.rows{display:grid;gap:clamp(64px,8vw,112px)}
+.row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-3);align-items:center}
+.row-media{grid-column:1/7;position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:5/4;background:var(--fallback,var(--img-kitchen));box-shadow:var(--sh-2)}
+.row-media img{width:100%;height:120%;object-fit:cover;position:absolute;left:0;top:-10%;will-change:transform}
+.row-text{grid-column:8/13}
+.row.reverse .row-media{grid-column:7/13;order:2}
+.row.reverse .row-text{grid-column:1/6;order:1}
+.row-text h3{font-size:var(--t-h2);margin-bottom:var(--s-2)}
+.row-text p{color:var(--c-ink-2);margin-bottom:var(--s-3);max-width:44ch}
+
+/* =========================================================
+   ESSENTIALS
+   ========================================================= */
+.essentials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-3)}
+.ess{display:block;border-radius:var(--r-lg)}
+.ess-media{position:relative;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;background:var(--fallback,var(--img-bacon));box-shadow:var(--sh-1);margin-bottom:var(--s-2)}
+.ess-media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out)}
+.ess:hover .ess-media img{transform:scale(1.05)}
+.ess h3{font-size:1.2rem;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.ess h3 svg{width:18px;height:18px;transition:transform .4s var(--ease-out);color:var(--c-accent)}
+.ess:hover h3 svg{transform:translateX(4px)}
+.ess p{font-size:var(--t-sm);color:var(--c-ink-2)}
+
+/* =========================================================
+   STORY / 2017
+   ========================================================= */
+.story{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-3);align-items:start}
+.story-year{grid-column:1/6}
+.story-year .num{font-family:var(--f-display);font-size:var(--t-display);line-height:.86;letter-spacing:-.055em;color:var(--c-accent);font-variant-numeric:tabular-nums;font-weight:500}
+.story-year .cap{margin-top:var(--s-2);font-size:var(--t-sm);color:var(--c-ink-2)}
+.story-copy{grid-column:7/13}
+.story-copy h2{margin-bottom:var(--s-3)}
+.story-copy p{color:var(--c-ink-2);margin-bottom:var(--s-2)}
+.story-copy .tagline{font-family:var(--f-display);font-weight:500;letter-spacing:-.02em;font-size:var(--t-lg);color:var(--c-ink);margin-top:var(--s-3);line-height:1.35}
+.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);margin-top:clamp(56px,7vw,88px)}
+.svc{height:220px;border-radius:var(--r-lg)}
+.svc .flip-front{background:#fff;box-shadow:var(--sh-1);padding:var(--s-3);display:flex;flex-direction:column;justify-content:space-between}
+.svc .icon{width:44px;height:44px;border-radius:12px;background:var(--c-band);display:grid;place-items:center;color:var(--c-accent)}
+.svc .icon svg{width:22px;height:22px}
+.svc h3{font-size:1.15rem}
+.svc .flip-front p{font-size:var(--t-sm);color:var(--c-ink-2);margin-top:6px}
+.svc .flip-back{background:var(--c-ink);color:#fff}
+.svc .flip-back p{color:rgba(255,255,255,.72)}
+.svc .flip-back .flip-kicker{color:rgba(255,255,255,.6)}
+.svc .flip-back .link{color:#fff}
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+.location{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-3);align-items:stretch}
+.loc-copy{grid-column:1/6;display:flex;flex-direction:column;justify-content:center}
+.loc-copy h2{margin-bottom:var(--s-2)}
+.loc-copy address{font-style:normal;margin:var(--s-3) 0 var(--s-4)}
+.loc-copy address strong{display:block;font-weight:600;margin-bottom:4px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-2);margin-bottom:var(--s-4)}
+.stat{padding:var(--s-2) 0;border-top:1px solid var(--c-hairline)}
+.stat .n{font-family:var(--f-display);font-weight:500;font-size:2rem;line-height:1;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat .n small{font-family:var(--f-sans);font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink-2);margin-left:4px;font-weight:600}
+.stat .l{font-size:var(--t-sm);color:var(--c-ink-2);margin-top:6px}
+.loc-actions{display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.map-card{grid-column:7/13;border-radius:var(--r-xl);overflow:hidden;background:#fff;box-shadow:var(--sh-3);display:flex;flex-direction:column;min-height:520px}
+.map-visual{position:relative;flex:1;min-height:360px;background:#EEF0EC;overflow:hidden}
+.map-visual iframe{position:absolute;inset:0;width:100%!important;height:100%!important;border:0;filter:contrast(1) saturate(1);display:block;min-height:unset;max-width:none}
+.map-label{position:absolute;left:16px;top:16px;z-index:2;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);padding:10px 14px;border-radius:12px;box-shadow:var(--sh-1);font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-2);max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.map-foot{padding:var(--s-3);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-3);border-top:1px solid var(--c-hairline)}
+.map-foot h3{font-size:1.25rem;margin-bottom:6px}
+.map-foot .eyebrow{margin-bottom:6px}
+.hours{font-size:var(--t-sm)}
+.hours dt{color:var(--c-ink-2);font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.hours dd{margin-bottom:12px;font-weight:500}
+.hours .open{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-xs);font-weight:600;color:var(--c-green)}
+.hours .open::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c-green);box-shadow:0 0 0 3px rgba(30,142,74,.15)}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-3)}
+.faq-head{grid-column:1/5}
+.faq-list{grid-column:5/13;border-top:1px solid var(--c-hairline)}
+.faq-item{border-bottom:1px solid var(--c-hairline)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:var(--s-3);padding:20px 0;text-align:left;font-weight:500;font-size:clamp(.9375rem,.9rem + .2vw,1.0625rem);transition:color .3s;font-family:var(--f-sans);letter-spacing:-.008em;line-height:1.45;min-width:0}
+.faq-q .q-text{flex:1;min-width:0;line-height:1.4;word-break:break-word;overflow-wrap:anywhere}
+.faq-q .plus{flex:none}
+.faq-q:hover{color:var(--c-accent)}
+.faq-q .plus{flex:none;width:36px;height:36px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(15,17,21,.14);display:grid;place-items:center;transition:transform .5s var(--ease-out),background .3s,color .3s}
+.faq-q .plus svg{width:14px;height:14px}
+.faq-q[aria-expanded="true"] .plus{transform:rotate(135deg);background:var(--c-accent);color:#fff;box-shadow:none}
+.faq-a{height:0;overflow:hidden;transition:height .5s var(--ease-out)}
+.faq-a > div{padding:0 56px 24px 0;color:var(--c-ink-2);max-width:60ch}
+/* Typewriter answer: ghost copy reserves height, typed copy overlays it */
+.faq-text{position:relative;display:block}
+.faq-text .ghost{opacity:0;display:block}
+.faq-text .typed{position:absolute;inset:0;display:block;pointer-events:none}
+.faq-text .caret{display:inline-block;width:2px;height:.95em;margin-left:2px;background:var(--c-accent);vertical-align:-.12em;border-radius:1px;animation:caret 1s steps(1) infinite}
+.faq-text.is-done .caret{opacity:0;animation:none}
+@keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* =========================================================
+   CTA BANDS + FOOTER
+   ========================================================= */
+.cta-mid{text-align:center}
+.cta-mid h2{margin-bottom:var(--s-2)}
+.cta-mid p{color:var(--c-ink-2);margin-bottom:var(--s-4);margin-inline:auto;max-width:48ch}
+
+.cta-final{position:relative;overflow:hidden;background:var(--img-kitchen);color:#fff}
+.cta-final .bg{position:absolute;inset:0}
+.cta-final .bg img{width:100%;height:120%;object-fit:cover;position:absolute;top:-10%;left:0;will-change:transform}
+.cta-final .bg::after{content:"";position:absolute;inset:0;background:rgba(10,10,12,.7)}
+.cta-final .inner{position:relative;padding-block:clamp(80px,10vw,140px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s-4)}
+.cta-final .eyebrow{color:rgba(255,255,255,.7)}
+.cta-final h2{font-size:clamp(2rem,1.5rem + 3vw,3.75rem);max-width:16ch}
+
+.footer{padding:clamp(56px,7vw,96px) 0 var(--s-4);border-top:1px solid var(--c-hairline)}
+.footer-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--s-4);align-items:start}
+.footer-brand{grid-column:1/6}
+.footer-brand p{color:var(--c-ink-2);font-size:var(--t-sm);max-width:36ch;margin-top:var(--s-2);line-height:1.6}
+.footer-col{grid-column:span 3}
+/* Contact column sits on the right */
+.footer-col:nth-last-child(1){grid-column:10/13}
+.footer-col h4{font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--c-ink-2);margin-bottom:var(--s-2)}
+.footer-col li{margin-bottom:10px;font-size:var(--t-sm);word-break:break-word;overflow-wrap:anywhere;line-height:1.5}
+@media (max-width:1024px){
+  .cat{flex-basis:calc((100% - var(--s-3)*2)/3);min-width:0;max-width:100%}
+  .services{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-brand{grid-column:1/13;margin-bottom:var(--s-2)}
+  .footer-col{grid-column:span 4}
+  .footer-col:nth-last-child(1){grid-column:span 4}
+  .map-card{min-height:0}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.footer-col a{transition:color .3s}
+.footer-col a:hover{color:var(--c-accent)}
+.footer-bottom{margin-top:clamp(48px,6vw,72px);padding-top:var(--s-3);border-top:1px solid var(--c-hairline);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2);font-size:var(--t-xs);color:var(--c-ink-3)}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);will-change:transform,opacity}
+.rv.in{opacity:1;transform:none}
+.rv-stagger > *{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.rv-stagger.in > *{opacity:1;transform:none}
+.rv-stagger.in > *:nth-child(1){transition-delay:.0s}
+.rv-stagger.in > *:nth-child(2){transition-delay:.1s}
+.rv-stagger.in > *:nth-child(3){transition-delay:.2s}
+.rv-stagger.in > *:nth-child(4){transition-delay:.3s}
+.rv-stagger.in > *:nth-child(5){transition-delay:.4s}
+.rv-stagger.in > *:nth-child(6){transition-delay:.5s}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+img,video,.row-media,.ess-media,.map-visual,.feature-card,.cat,.svc{max-width:100%}
+
+/* Tablet hero: keep two columns but tighten */
+@media (max-width:900px){
+  .hero{padding-block:28px 56px}
+  .hero-grid{grid-template-columns:1fr;gap:26px;max-width:720px;margin-inline:auto}
+  .hero h1{max-width:100%;font-size:clamp(2.6rem,7vw,3.6rem)}
+  .hero .lede{max-width:52ch}
+  .hero-foot{max-width:100%}
+  .hero-media{aspect-ratio:16/11;border-radius:22px}
+  .hero-glass{left:14px;right:14px;bottom:14px;animation:none}
+  .hero-ctas .btn{padding:15px 24px}
+}
+
+/* Tablet: stack story/location/faq too so they don't compress */
+@media (max-width:1024px){
+  .story{grid-template-columns:1fr;gap:24px}
+  .story-year,.story-copy{grid-column:1/-1}
+  .location{grid-template-columns:1fr;gap:28px}
+  .loc-copy{grid-column:1/-1;order:1}
+  .map-card{grid-column:1/-1;order:2;min-height:0}
+  .faq{grid-template-columns:1fr;gap:24px}
+  .faq-head,.faq-list{grid-column:1/-1}
+}
+
+@media (max-width:768px){
+  :root{--nav-h:60px;--section-y:clamp(48px,9vw,72px);--s-4:20px;--s-6:36px;--gutter:16px}
+  *{box-sizing:border-box}
+  body{font-size:15px;line-height:1.55}
+  .container{padding-inline:16px}
+  /* ---- Nav ---- */
+  .nav{height:var(--nav-h)}
+  .nav-inner{grid-template-columns:1fr auto;gap:8px;align-items:center}
+  .nav-right{display:flex;align-items:center;gap:8px;flex:none}
+  .nav-links{display:none}
+  .burger{display:inline-grid!important;width:44px;height:44px;background:transparent;border:0;padding:0}
+  .brand{gap:8px}
+  .brand-mark{width:32px;height:32px}
+  .brand-mark svg{width:18px;height:18px}
+  .brand strong{font-size:1rem;max-width:140px}
+  .brand small{font-size:9px}
+  .nav-right .tel,.nav-right .btn-green{display:none}
+  .nav-right{gap:8px}
+  .mobile-menu{padding:20px 16px}
+  .mobile-menu a{font-size:1.4rem;padding:14px 0}
+  .mobile-menu .btn{width:100%;justify-content:center;align-self:stretch}
+  /* ---- Hero ---- */
+  .hero{padding-block:20px 40px;min-height:0}
+  .hero-glow{width:340px;height:340px;top:-120px;right:-140px}
+  .hero-grid{grid-template-columns:1fr;gap:22px}
+  .hero-badge{font-size:9.5px;letter-spacing:.1em;padding:7px 12px;margin-bottom:16px;gap:7px}
+  .hero-badge span:last-child{white-space:normal;line-height:1.4}
+  .hero h1{font-size:clamp(2.15rem,10.4vw,2.9rem);line-height:1.04;letter-spacing:-.03em;max-width:100%;margin-bottom:14px}
+  .hero h1 .reveal-line > span{white-space:normal}
+  .hero .lede{font-size:.9375rem;line-height:1.55;margin-bottom:22px;max-width:100%}
+  .hero-ctas{flex-direction:column;align-items:stretch;gap:9px;width:100%}
+  .hero-ctas .btn{width:100%;justify-content:center;padding:15px 20px;font-size:14px}
+  .hero-ctas .btn-ghost{background:#fff;color:var(--c-ink);box-shadow:inset 0 0 0 1px rgba(15,17,21,.16)}
+  .hero-proof{display:none}
+  .hero-visual{margin-top:2px}
+  .hero-media{aspect-ratio:4/3.5;border-radius:20px;box-shadow:0 18px 40px -20px rgba(15,17,21,.4)}
+  .hero-media img{object-position:center 45%}
+  .hero-tag{top:12px;right:12px;font-size:8.5px;padding:7px 10px;letter-spacing:.1em}
+  .hero-glass{left:10px;right:10px;bottom:10px;padding:10px 12px;border-radius:14px;gap:10px;animation:none}
+  .hero-glass .ic{width:32px;height:32px;border-radius:9px}
+  .hero-glass .ic svg{width:16px;height:16px}
+  .hero-glass b{font-size:12px}
+  .hero-glass .lbl{font-size:8.5px;letter-spacing:.07em;margin-top:2px}
+  .hero-glass .go svg{width:14px;height:14px}
+  .hero-foot{margin-top:20px;padding-top:14px;font-size:9.5px;letter-spacing:.1em;max-width:100%}
+  .hero-foot .scroll-hint{display:none}
+  /* ---- Section heads ---- */
+  .section{padding-block:var(--section-y)}
+  .section-head{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:24px}
+  .section-head h2{font-size:clamp(1.7rem,6.5vw,2.2rem)}
+  .eyebrow{font-size:10px;gap:8px;margin-bottom:8px}
+  .eyebrow::before{width:14px}
+  /* ---- Categories: 2-column grid (not horizontal scroll) ---- */
+  .carousel-wrap{overflow:visible}
+  .carousel-wrap .carousel{margin:0;padding:0;gap:10px;overflow:visible;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat{flex:none;min-width:0;width:100%;aspect-ratio:3/4;scroll-snap-align:initial}
+  .cat .cat-label{left:12px;right:12px;bottom:10px;gap:4px;align-items:end}
+  .cat .cat-label h3{font-size:1rem;line-height:1.15;margin:0}
+  .cat .cat-label small{font-size:9px;letter-spacing:.05em;white-space:nowrap}
+  .cat .flip-back{padding:14px}
+  .cat .flip-back p{font-size:12px;line-height:1.45}
+  .cat .flip-back h3{font-size:1rem;margin:4px 0 8px}
+  .cat .flip-back .link{font-size:11px}
+  .cat .flip-kicker{font-size:9px}
+  .carousel-nav{display:none}
+  /* ---- Featured ---- */
+  .featured{grid-template-columns:1fr;gap:14px}
+  .feature-card{aspect-ratio:4/4.6}
+  .fc-body{padding:18px}
+  .fc-body h3{font-size:1.35rem}
+  /* ---- Rows (Good food...) ---- */
+  .row,.row.reverse{display:flex;flex-direction:column;gap:18px}
+  .row-media{width:100%;aspect-ratio:5/4}
+  .row-text h3{font-size:clamp(1.6rem,6.5vw,2.1rem)}
+  /* ---- Essentials ---- */
+  .essentials{grid-template-columns:1fr;gap:20px}
+  .ess h3{font-size:1.1rem}
+  .ess-media{aspect-ratio:16/10}
+  /* ---- Services (story cards) ---- */
+  .services{grid-template-columns:1fr;gap:14px}
+  .svc{height:180px}
+  /* ---- Story section: stack columns ---- */
+  .story{grid-template-columns:1fr;gap:20px}
+  .story-year,.story-copy{grid-column:1/-1}
+  .story-year{margin-bottom:8px}
+  .story-year .num{font-size:clamp(5rem,28vw,8rem);line-height:.85}
+  .story-year .cap{font-size:13px;margin-top:10px;max-width:28ch}
+  /* ---- Location: stack columns, map full width ---- */
+  .location{display:flex;flex-direction:column;gap:24px}
+  .loc-copy{order:1}
+  .map-card{order:2;grid-column:auto;min-height:0;overflow:hidden;border-radius:var(--r-lg);width:100%}
+  .loc-copy h2{font-size:clamp(1.8rem,7vw,2.3rem)}
+  .loc-copy address{margin:16px 0 20px;font-size:14px;line-height:1.6}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .stat{padding:12px 0}
+  .stat .n{font-size:1.25rem}
+  .stat small{font-size:9px;margin-left:1px}
+  .stat .l{font-size:10.5px;line-height:1.3;margin-top:4px}
+  .loc-actions{flex-direction:column;align-items:stretch;gap:8px}
+  .loc-actions .btn{width:100%;justify-content:center;padding:13px 18px;font-size:14px}
+  .map-visual{min-height:280px}
+  .map-label{left:12px;top:12px;font-size:9px;padding:7px 10px;letter-spacing:.06em}
+  .map-foot{grid-template-columns:1fr;gap:20px;padding:20px}
+  .map-foot h3{font-size:1.3rem}
+  .map-foot p{font-size:13px}
+  .hours{font-size:13px}
+  .hours dd{font-size:13px}
+  /* ---- FAQ: single column, wrap question text cleanly ---- */
+  .faq{grid-template-columns:1fr;gap:20px}
+  .faq-head,.faq-list{grid-column:1/-1}
+  .faq-head{margin-bottom:4px}
+  .faq-head h2{font-size:clamp(2rem,8.5vw,2.6rem)}
+  .faq-q{font-size:1rem;padding:16px 0;gap:12px;display:flex;align-items:flex-start;width:100%}
+  .faq-q .q-text{flex:1;min-width:0;line-height:1.4;overflow-wrap:anywhere;word-break:break-word}
+  .faq-q .plus{width:30px;height:30px;flex:none;margin-top:2px}
+  .faq-a > div{padding:0 0 16px}
+  .faq-a > div .faq-text{font-size:14px;line-height:1.6}
+  /* ---- CTA final ---- */
+  .cta-final .inner{flex-direction:column;align-items:flex-start;text-align:left;gap:24px;padding-block:72px 56px}
+  .cta-final h2{max-width:none;font-size:clamp(1.9rem,8vw,2.6rem)}
+  .cta-final .rv:last-child{width:100%;display:flex;flex-direction:column;gap:10px}
+  .cta-final .rv:last-child .btn{width:100%;justify-content:center;padding:14px 20px}
+  .cta-mid .btn{width:100%;justify-content:center}
+  /* ---- Footer ---- */
+  .footer{padding:36px 0 calc(68px + env(safe-area-inset-bottom,0px));background:var(--c-bg)}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:20px;row-gap:0;align-items:start}
+  .footer-brand{grid-column:1/-1;padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid var(--c-hairline)}
+  .footer-brand .brand{margin-bottom:4px}
+  .footer-brand p{font-size:13px;line-height:1.5;max-width:46ch;margin:6px 0 0;color:var(--c-ink-2)}
+  .footer-col{grid-column:auto}
+  .footer-col h4{margin:0 0 8px;font-size:10px;letter-spacing:.14em}
+  .footer-col ul{margin:0;padding:0}
+  .footer-col li{font-size:13px;margin-bottom:5px;line-height:1.35;overflow-wrap:anywhere;word-break:break-word}
+  /* Contact column below both, 2-col compact */
+  .footer-col:nth-last-child(1){grid-column:1/-1;margin-top:18px;padding-top:16px;border-top:1px solid var(--c-hairline)}
+  .footer-col:nth-last-child(1) ul{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:6px}
+  .footer-col:nth-last-child(1) li{margin-bottom:0;font-size:13px;line-height:1.4}
+  .footer-col:nth-last-child(1) li span.muted{color:var(--c-ink-2);display:inline;font-size:12.5px}
+  .footer-col:nth-last-child(1) li a{color:var(--c-ink);font-weight:500}
+  .footer-bottom{flex-direction:column;gap:4px;align-items:flex-start;font-size:11px;margin-top:18px;padding-top:14px;color:var(--c-ink-3)}
+  /* ---- Flip cards (cat/svc) ---- */
+  .flip-back{padding:16px}
+  .flip-back p{font-size:12.5px;line-height:1.5}
+  /* ---- Admin launch ---- */
+  .admin-launch{width:36px;height:36px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));opacity:.75}
+  .admin-launch svg{width:15px;height:15px}
+}
+@media (max-width:420px){
+  .carousel-wrap .carousel{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .cat{aspect-ratio:3/4.4}
+  .cat .cat-label small{display:none}
+  .cat .cat-label h3{font-size:.95rem}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stat{padding:10px 0}
+  .stat .n{font-size:1.1rem}
+  .stat .l{font-size:10px;margin-top:4px;line-height:1.25}
+  .hero h1{font-size:clamp(2rem,11vw,2.8rem)}
+  .map-foot{padding:18px}
+  .brand strong{font-size:.95rem;max-width:120px}
+  .footer-grid{grid-template-columns:1fr 1fr;column-gap:16px;row-gap:0}
+  .footer-col h4{font-size:9.5px;margin-bottom:6px}
+  .footer-col li{font-size:12.5px;margin-bottom:4px;line-height:1.35}
+  .footer-col:nth-last-child(1) ul{grid-template-columns:1fr}
+  .footer-col:nth-last-child(1){margin-top:14px;padding-top:14px}
+  .footer-brand{margin-bottom:14px;padding-bottom:14px}
+  .footer-brand p{font-size:12.5px}
+  .footer-bottom{margin-top:14px}
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+/* =========================================================
+   ADMIN / CMS
+   ========================================================= */
+.admin-launch{position:fixed;right:14px;bottom:14px;z-index:999;width:42px;height:42px;border-radius:50%;background:#fff;color:var(--c-ink);display:grid;place-items:center;box-shadow:var(--sh-2);opacity:.85;transition:opacity .3s,transform .3s,background .3s,color .3s;border:1px solid var(--c-hairline)}
+.admin-launch:hover{opacity:1;transform:scale(1.06);background:var(--c-ink);color:#fff;border-color:var(--c-ink)}
+.admin-launch.is-open{background:var(--c-accent);color:#fff;border-color:var(--c-accent)}
+@media (max-width:768px){
+  .admin-launch{right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:38px;height:38px;opacity:.8;background:#fff;border:1px solid rgba(15,17,21,.12);color:var(--c-ink)}
+  .admin-launch svg{width:15px;height:15px}
+  html{scrollbar-width:thin}
+  body{scrollbar-width:thin}
+}
+.admin-launch:hover{opacity:1;transform:scale(1.08)}
+.admin-launch svg{width:18px;height:18px}
+.admin-panel .admin-body{max-width:820px;width:100%;margin:0 auto;padding-inline:24px}
+
+/* Admin chrome: sans-serif UI typography (never the editorial serif) */
+.admin-panel,.admin-panel button,.admin-panel input,.admin-panel textarea,.admin-panel select,.admin-panel label,
+.admin-panel h1,.admin-panel h2,.admin-panel h3,.admin-panel h4,.admin-panel p,.admin-panel span,.admin-panel li,.admin-panel a{
+  font-family:var(--f-sans)!important;
+  letter-spacing:-.006em;
+}
+.admin-panel{position:fixed;inset:0;width:100%;height:100%;height:100dvh;max-width:100%;background:#fff;z-index:2001;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .5s var(--ease-out);overflow:hidden;overscroll-behavior:contain}
+.admin-panel.is-open{transform:translateY(0)}
+.admin-head{padding:16px 20px;border-bottom:1px solid var(--c-hairline);display:flex;align-items:center;gap:12px;justify-content:space-between;background:#fff;flex:none}
+.admin-head h3{font-weight:600!important;font-size:15px!important;line-height:1.25;letter-spacing:-.01em!important;color:var(--c-ink)}
+.admin-head small{display:block;color:var(--c-ink-3);font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;margin-bottom:3px}
+.admin-close{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--c-band);box-shadow:inset 0 0 0 1px var(--c-hairline);flex:none;transition:background .2s,color .2s}
+.admin-close:hover{background:var(--c-ink);color:#fff}
+.admin-close svg{width:15px;height:15px}
+.admin-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--c-hairline);overflow:hidden;flex:none}
+.admin-tab{padding:7px 11px;border-radius:7px;font-size:11.5px!important;font-weight:500!important;letter-spacing:0!important;line-height:1.2;white-space:nowrap;color:var(--c-ink-2);background:transparent;transition:background .2s,color .2s;border:1px solid transparent}
+.admin-tab:hover{color:var(--c-ink);background:var(--c-band)}
+.admin-tab.active{background:var(--c-ink);color:#fff;font-weight:600!important}
+.admin-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:20px;max-width:100%;overscroll-behavior:contain}
+.admin-body::-webkit-scrollbar{width:8px}
+.admin-body::-webkit-scrollbar-thumb{background:rgba(15,17,21,.15);border-radius:4px}
+
+.admin-field{margin-bottom:16px;min-width:0}
+.admin-field label{display:block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--c-ink-2);margin-bottom:6px}
+.admin-field input[type=text],.admin-field input[type=url],.admin-field input[type=email],.admin-field input[type=tel],.admin-field input[type=number],.admin-field input[type=password],.admin-field textarea,.admin-field select{
+  width:100%;max-width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(15,17,21,.14);font:inherit;font-size:13.5px;line-height:1.45;background:#fff;resize:vertical;font-family:inherit;color:var(--c-ink);transition:border-color .2s,box-shadow .2s
+}
+.admin-field textarea{min-height:72px;line-height:1.55}
+.admin-field input:focus,.admin-field textarea:focus,.admin-field select:focus{outline:none;border-color:var(--c-accent);box-shadow:0 0 0 3px rgba(179,38,30,.1)}
+.admin-field .hint{font-size:11.5px;color:var(--c-ink-3);margin-top:4px;line-height:1.45}
+.admin-field .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}
+.admin-field .row2 > *{min-width:0}
+.admin-field .swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}
+.admin-field .swatch{aspect-ratio:1;border-radius:8px;border:2px solid transparent;cursor:pointer;box-shadow:inset 0 0 0 1px var(--c-hairline)}
+.admin-field .swatch.active{border-color:var(--c-ink);box-shadow:inset 0 0 0 2px #fff, 0 0 0 2px var(--c-ink)}
+
+.admin-section{display:none;max-width:100%;min-width:0}
+.admin-section.active{display:block}
+.admin-section-title{font-size:16px!important;font-weight:600!important;line-height:1.3;margin:24px 0 6px;letter-spacing:-.01em!important;color:var(--c-ink)}
+.admin-section > .admin-section-title:first-child{margin-top:0}
+.admin-section-desc{color:var(--c-ink-2);font-size:12.5px;line-height:1.5;margin-bottom:16px}
+
+.admin-list{display:grid;gap:10px;margin-bottom:var(--s-3)}
+.admin-item{border:1px solid var(--c-hairline);border-radius:12px;background:#fff;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.admin-item.dragging{opacity:.5;border-color:var(--c-accent);box-shadow:var(--sh-2)}
+.admin-item-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--c-band)}
+.admin-drag{cursor:grab;color:var(--c-ink-3);display:grid;place-items:center;flex:none;touch-action:none}
+.admin-drag:active{cursor:grabbing}
+.admin-drag svg{width:16px;height:16px}
+.admin-item-title{flex:1;font-weight:600;font-size:var(--t-sm);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-item-toggle{padding:6px 10px;border-radius:8px;font-size:var(--t-xs);font-weight:600}
+.admin-item-toggle[data-active="true"]{background:rgba(30,142,74,.12);color:var(--c-green)}
+.admin-item-toggle[data-active="false"]{background:rgba(15,17,21,.06);color:var(--c-ink-2)}
+.admin-item-body{padding:14px;border-top:1px solid var(--c-hairline);display:none}
+.admin-item.open .admin-item-body{display:block}
+.admin-item-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.admin-item-actions .btn-danger{background:transparent;color:var(--c-accent);padding:8px 12px;border-radius:8px;font-size:var(--t-xs);font-weight:600;box-shadow:inset 0 0 0 1px rgba(179,38,30,.3)}
+.admin-item-actions .btn-danger:hover{background:rgba(179,38,30,.08)}
+.admin-item-actions .btn-sm2{background:var(--c-band);padding:8px 12px;border-radius:8px;font-size:var(--t-xs);font-weight:600}
+.admin-item-actions .btn-sm2:hover{background:#EBEBE7}
+
+.upload{display:flex;gap:10px;align-items:flex-start}
+.upload-thumb{width:72px;height:72px;border-radius:10px;background:var(--c-band);object-fit:cover;flex:none;border:1px solid var(--c-hairline);display:grid;place-items:center;color:var(--c-ink-3);overflow:hidden}
+.upload-thumb img{width:100%;height:100%;object-fit:cover}
+.upload-ctrl{flex:1;display:grid;gap:6px}
+.upload-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--r-pill);background:var(--c-band);font-size:var(--t-xs);font-weight:600;cursor:pointer;transition:background .3s;justify-content:center;text-align:center}
+.upload-btn:hover{background:#EBEBE7}
+.upload-btn input{display:none}
+.upload-url{font-size:var(--t-xs);color:var(--c-ink-3);background:transparent;border:0;padding:4px 0;border-bottom:1px dashed var(--c-hairline);width:100%}
+.upload-url:focus{outline:none;color:var(--c-ink);border-color:var(--c-ink)}
+.upload-clear{font-size:var(--t-xs);color:var(--c-accent);background:none;border:0;cursor:pointer;padding:0;font-weight:600;text-align:left}
+
+.admin-cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn-add{width:100%;padding:14px;border-radius:12px;border:2px dashed var(--c-hairline);background:transparent;color:var(--c-ink-2);font-weight:600;font-size:var(--t-sm);transition:border-color .3s,color .3s,background .3s}
+.btn-add:hover{border-color:var(--c-accent);color:var(--c-accent);background:rgba(179,38,30,.04)}
+.btn-add svg{width:16px;height:16px;vertical-align:-2px;margin-right:6px}
+
+.admin-foot{padding:12px 20px;border-top:1px solid var(--c-hairline);background:#fff;display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;flex:none}
+.admin-foot .meta{font-size:11px;color:var(--c-ink-3)}
+.admin-foot .grp{display:flex;gap:6px;flex-wrap:wrap}
+.btn-dan{padding:9px 13px;border-radius:8px;background:transparent;color:var(--c-accent);box-shadow:inset 0 0 0 1px rgba(179,38,30,.32);font-size:11.5px;font-weight:600;transition:background .2s}
+.btn-dan:hover{background:rgba(179,38,30,.07)}
+.btn-sec{padding:9px 13px;border-radius:8px;background:#fff;color:var(--c-ink);box-shadow:inset 0 0 0 1px rgba(15,17,21,.14);font-size:11.5px;font-weight:600;transition:background .2s}
+.btn-sec:hover{background:var(--c-band)}
+.btn-save{padding:9px 16px;border-radius:8px;background:var(--c-ink);color:#fff;font-size:11.5px;font-weight:600;transition:background .2s}
+.btn-save:hover{background:#000}
+.btn-save.is-saved{background:var(--c-green)}
+
+/* Contain everything inside the editor: no page-level horizontal scroll */
+.admin-panel *{max-width:100%}
+.admin-list{min-width:0}
+.admin-item{min-width:0;max-width:100%}
+.admin-item-head{min-width:0;flex-wrap:nowrap}
+.admin-item-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-item-body{min-width:0;overflow-wrap:anywhere}
+.admin-field .row2{grid-template-columns:1fr 1fr}
+.upload{min-width:0}
+.upload-thumb{background:var(--c-band);border-radius:8px}
+.upload-ctrl{min-width:0}
+.upload-url{max-width:100%}
+.admin-section input,.admin-section textarea{max-width:100%}
+
+/* Consolidated editor responsive rules (kept last so they win) */
+@media (max-width:600px){
+  .admin-head{padding:14px 16px}
+  .admin-head h3{font-size:14px!important}
+  .admin-tabs{padding:8px 14px;gap:4px}
+  .admin-tab{font-size:10.5px!important;padding:6px 8px}
+  .admin-body{padding:16px}
+  .admin-foot{padding:10px 14px;flex-direction:column;gap:10px;align-items:stretch}
+  .admin-foot .meta{display:none}
+  .admin-foot .grp{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+  .admin-foot .grp .btn-save{grid-column:1/-1}
+  .admin-foot .grp .btn-sec,.admin-foot .grp .btn-dan,.admin-foot .grp .btn-save{padding:10px 6px;font-size:11px;text-align:center;white-space:nowrap}
+  .admin-field .row2{grid-template-columns:1fr}
+  .admin-item-head{padding:10px}
+  .admin-item-title{font-size:12px}
+  .upload{flex-direction:row;align-items:flex-start;gap:8px}
+  .upload-thumb{width:56px;height:56px}
+  .upload-ctrl{flex:1}
+}
+
+/* Edit-mode outline (subtle) */
+body.admin-editing [data-editable],
+body.admin-editing [data-editable-image]{position:relative}
+body.admin-editing [data-editable]:hover{outline:2px dashed rgba(179,38,30,.4);outline-offset:4px;cursor:text;border-radius:4px}
+body.admin-editing [data-editable-image]:hover{outline:2px dashed rgba(179,38,30,.4);outline-offset:4px;cursor:pointer;border-radius:8px}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--c-ink);color:#fff;padding:12px 20px;border-radius:var(--r-pill);font-size:var(--t-sm);font-weight:500;box-shadow:var(--sh-3);z-index:3000;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-out),transform .4s var(--ease-out)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* =========================================================
+   OFFICIAL LOGO — live site
+   ========================================================= */
+:root{--logo-h-header:36px;--logo-h-header-m:30px;--logo-h-footer:40px;--logo-h-hero:72px}
+.brand-logo{display:block;width:auto;height:var(--logo-h-header);max-width:min(240px,46vw);object-fit:contain;object-position:left center;flex:none}
+.brand-logo--footer{height:var(--logo-h-footer);max-width:min(280px,72vw)}
+.brand.has-logo{gap:12px}
+.hero-logo{margin-bottom:clamp(16px,2.4vw,24px)}
+.hero-logo[hidden]{display:none}
+.hero-logo img{display:block;width:auto;height:var(--logo-h-hero);max-width:min(340px,80vw);object-fit:contain;object-position:left center}
+@media (max-width:768px){
+  .brand-logo--header{height:var(--logo-h-header-m);max-width:56vw}
+  .hero-logo img{height:calc(var(--logo-h-hero) * .72)}
+}
+
+/* =========================================================
+   OFFICIAL LOGO — admin manager
+   ========================================================= */
+.lp-help{border:1px solid var(--c-hairline);border-radius:12px;background:var(--c-band);margin-bottom:18px;overflow:hidden}
+.lp-help summary{cursor:pointer;list-style:none;padding:12px 14px;font-size:13px;font-weight:600;color:var(--c-ink);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.lp-help summary::-webkit-details-marker{display:none}
+.lp-help summary::after{content:"+";font-size:18px;line-height:1;color:var(--c-ink-3);transition:transform .3s;flex:none}
+.lp-help[open] summary::after{transform:rotate(45deg)}
+.lp-help-body{padding:0 14px 14px;font-size:12.5px;line-height:1.55;color:var(--c-ink-2)}
+.lp-help-body h5{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--c-ink);margin:14px 0 6px}
+.lp-help-body ul{list-style:none;display:grid;gap:5px;margin:0;padding:0}
+.lp-help-body li{position:relative;padding-left:14px}
+.lp-help-body li::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--c-accent)}
+.lp-help-body b{color:var(--c-ink);font-weight:600}
+.lp-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;background:#fff;border-radius:8px;overflow:hidden}
+.lp-table th,.lp-table td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--c-hairline);vertical-align:top;overflow-wrap:anywhere}
+.lp-table th{font-weight:600;color:var(--c-ink);font-size:11px;background:#fbfbfa}
+.lp-table tr:last-child td{border-bottom:0}
+.lp-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:24px 16px;border:1.5px dashed rgba(15,17,21,.2);border-radius:12px;background:#fff;cursor:pointer;transition:border-color .2s,background .2s,opacity .2s}
+.lp-drop:hover,.lp-drop.is-over{border-color:var(--c-accent);background:rgba(179,38,30,.03)}
+.lp-drop.is-busy{opacity:.55;pointer-events:none}
+.lp-drop svg{width:22px;height:22px;color:var(--c-ink-2)}
+.lp-drop b{font-size:13px;font-weight:600;color:var(--c-ink)}
+.lp-drop span{font-size:11.5px;line-height:1.45;color:var(--c-ink-3);max-width:44ch}
+.lp-drop input{display:none}
+.lp-status{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-size:12px;font-weight:500;line-height:1.4;margin:0 0 12px}
+.lp-status.live{background:rgba(30,142,74,.08);color:#17743C}
+.lp-status.pending{background:rgba(224,122,31,.1);color:#9a520f}
+.lp-status.none{background:var(--c-band);color:var(--c-ink-2)}
+.lp-status i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.lp-meta{font-size:11.5px;color:var(--c-ink-3);margin:8px 0 12px;overflow-wrap:anywhere}
+.lp-checks{display:grid;gap:6px;margin:0 0 8px}
+.lp-check{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.45;padding:9px 10px;border-radius:8px;background:var(--c-band)}
+.lp-check .ico{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;margin-top:1px}
+.lp-check.pass .ico{background:var(--c-green)}
+.lp-check.warn .ico{background:#E07A1F}
+.lp-check.fail .ico{background:var(--c-accent)}
+.lp-check div{min-width:0}
+.lp-check b{display:block;color:var(--c-ink);font-weight:600}
+.lp-check div span{display:block;color:var(--c-ink-2)}
+.lp-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.lp-swatch{border-radius:10px;height:110px;display:grid;place-items:center;padding:16px 14px 22px;position:relative;box-shadow:inset 0 0 0 1px var(--c-hairline);overflow:hidden}
+.lp-swatch img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.lp-swatch em{position:absolute;left:9px;bottom:6px;font-style:normal;font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.lp-swatch.light{background:#fff;color:var(--c-ink)}
+.lp-swatch.dark{background:#0F1115;color:#fff}
+.lp-swatch.checker{color:var(--c-ink);background-color:#fff;background-image:linear-gradient(45deg,#e9e9e6 25%,transparent 25%),linear-gradient(-45deg,#e9e9e6 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e9e9e6 75%),linear-gradient(-45deg,transparent 75%,#e9e9e6 75%);background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0}
+.lp-devices{display:grid;gap:10px;margin-bottom:12px}
+.lp-device{border-radius:10px;box-shadow:inset 0 0 0 1px var(--c-hairline);overflow:hidden;background:#fff;width:100%}
+.lp-device-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink-3);padding:6px 10px;background:var(--c-band);border-bottom:1px solid var(--c-hairline);display:flex;justify-content:space-between;gap:8px}
+.lp-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;background:#fff;overflow:hidden}
+.lp-mark{display:flex;align-items:center;gap:8px;min-width:0}
+.lp-mark img{display:block;width:auto;object-fit:contain;object-position:left center;flex:none}
+.lp-word{font-size:12.5px;font-weight:600;letter-spacing:-.02em;color:var(--c-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lp-default{width:28px;height:28px;border-radius:8px;background:var(--c-ink);flex:none}
+.lp-links{display:flex;gap:10px;flex:none}
+.lp-links i{display:block;width:30px;height:6px;border-radius:3px;background:#E6E6E3}
+.lp-cta{width:56px;height:22px;border-radius:11px;background:var(--c-green);flex:none}
+.lp-burger{width:18px;height:12px;flex:none;background:linear-gradient(var(--c-ink),var(--c-ink)) top/100% 2px no-repeat,linear-gradient(var(--c-ink),var(--c-ink)) center/100% 2px no-repeat,linear-gradient(var(--c-ink),var(--c-ink)) bottom/100% 2px no-repeat}
+.lp-tablet{max-width:560px}
+.lp-phone{max-width:340px}
+.lp-foot-mock,.lp-hero-mock{padding:16px 14px;background:#fff}
+.lp-foot-mock img,.lp-hero-mock img{display:block;width:auto;object-fit:contain;object-position:left center}
+.lp-foot-mock i,.lp-hero-mock i{display:block;height:7px;border-radius:4px;background:#ECECE9;margin-top:10px;width:72%}
+.lp-hero-mock i{height:12px;width:85%}
+.lp-hero-mock em{font-style:normal;font-size:12px;color:var(--c-ink-3);display:block}
+.lp-actions{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.lp-actions[hidden]{display:none}
+.lp-actions > *{flex:1 1 140px;text-align:center;display:inline-flex;align-items:center;justify-content:center}
+.admin-range{width:100%;accent-color:var(--c-accent);height:24px;margin:0}
+.admin-field label output{float:right;font-weight:600;color:var(--c-ink);letter-spacing:0;text-transform:none}
+.lp-toggle{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.45;padding:10px 12px;border-radius:8px;background:var(--c-band);margin-bottom:8px;cursor:pointer;color:var(--c-ink)}
+.lp-toggle input{margin-top:3px;accent-color:var(--c-accent);flex:none;width:16px;height:16px}
+.lp-toggle small{display:block;color:var(--c-ink-3);font-size:11.5px;margin-top:2px}
+@media (max-width:600px){
+  .lp-stage{grid-template-columns:1fr 1fr}
+  .lp-stage .lp-swatch.checker{grid-column:1/-1}
+  .lp-swatch{height:92px}
+  .lp-links{display:none}
+}
+
+/* Live color/font preview vars handled via inline style on :root */
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .hero-media img{animation:none;transform:none}
+  .marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+  .rv,.rv-stagger > *{opacity:1;transform:none}
+  .reveal-line > span,.hero-fade{transform:none;opacity:1}
+  .row-media img,.cta-final .bg img{height:100%;top:0;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- =========================== NAV =========================== -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand" id="navBrand" aria-label="JayCee Trading & Services home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1 3-5 4.5-5 9a5 5 0 0 0 10 0c0-4.5-4-6-5-9Z"/><path d="M9 13.5c.5 1.5 1.5 2.5 3 3"/></svg>
+      </span>
+      <span><small>Est. 2017 · Palawan</small><strong>JayCee Trading</strong></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary"></nav>
+    <div class="nav-right">
+      <a class="tel" id="navTel" href="tel:+639171234567">+63 917 123 4567</a>
+      <a href="#order" class="btn btn-green" id="navOrderBtn">
+        <span id="navOrderLabel">Order Online</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products">Products</a>
+  <a href="#wholesale">Wholesale</a>
+  <a href="#story">Our Story</a>
+  <a href="#delivery">Delivery</a>
+  <a href="#faq">FAQ</a>
+  <a href="#location">Contact</a>
+  <a href="#order" class="btn btn-green">Order Online</a>
+</div>
+
+<main id="top">
+
+<!-- =========================== HERO =========================== -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-inner">
+      <div class="hero-logo hero-fade d1" id="heroLogo" hidden></div>
+      <p class="hero-badge hero-fade d1"><span class="pulse" aria-hidden="true"></span><span id="heroEyebrow"></span></p>
+      <h1 id="hero-title">
+        <span class="reveal-line"><span id="heroLine1"></span></span>
+        <span class="reveal-line"><span id="heroLine2"></span></span>
+        <span class="reveal-line"><span id="heroLine3"></span></span>
+      </h1>
+      <p class="lede hero-fade d2" id="heroLede"></p>
+      <div class="hero-ctas hero-fade d3">
+        <a href="#products" class="btn btn-primary magnetic" id="heroCta1">
+          <span id="heroCta1Label"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#wholesale" class="btn btn-ghost magnetic" id="heroCta2"><span id="heroCta2Label"></span></a>
+      </div>
+      <div class="hero-proof hero-fade d3">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="heroProof"></span>
+      </div>
+      <div class="hero-foot hero-fade d4">
+        <span id="heroFootNote"></span>
+        <span class="scroll-hint"><i aria-hidden="true"></i> Scroll</span>
+      </div>
+    </div>
+
+    <div class="hero-visual hero-fade d2">
+      <div class="hero-media" id="heroMedia">
+        <img id="heroBgImg" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1800&q=85" alt="Imported meats and frozen goods from JayCee Trading" fetchpriority="high" data-editable-image="hero.bg">
+        <span class="hero-tag"><i aria-hidden="true"></i> <span id="heroTag">Est. 2017 · Palawan</span></span>
+        <div class="hero-glass">
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 6.5l14.2 11M4.9 17.5l14.2-11"/><path d="M12 2l-2.5 2.5M12 2l2.5 2.5M12 22l-2.5-2.5M12 22l2.5-2.5"/></svg>
+          </span>
+          <span class="txt">
+            <b id="heroGlassTitle">Cold chain, never broken</b>
+            <span class="lbl" id="heroGlassSub">−18°C from arrival to your kitchen</span>
+          </span>
+          <a href="#location" class="go" aria-label="Visit our warehouse">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== CATEGORIES =========================== -->
+<section class="section" id="products" aria-labelledby="cat-title">
+  <div class="container">
+    <div class="section-head rv">
+      <div>
+        <p class="eyebrow" id="catEyebrow"></p>
+        <h2 id="cat-title"></h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px">
+        <a href="#order" class="link" id="catViewAll"></a>
+        <div class="carousel-nav">
+          <button class="arrow-btn" id="catPrev" aria-label="Previous categories">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="arrow-btn" id="catNext" aria-label="Next categories">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-wrap rv">
+      <div class="carousel" id="catCarousel" role="list" aria-label="Product categories"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FEATURED =========================== -->
+<section class="section" style="padding-top:0" aria-label="Featured ranges" id="featuredSection">
+  <div class="container">
+    <div class="featured rv-stagger" id="featuredList"></div>
+  </div>
+</section>
+
+<!-- =========================== TRUSTED BY =========================== -->
+<section class="section band trusted" id="wholesale" aria-labelledby="trusted-title">
+  <div class="container rv">
+    <p class="eyebrow" style="justify-content:center" id="trustedEyebrow"></p>
+    <h2 id="trusted-title"></h2>
+  </div>
+  <div class="marquee rv" aria-label="Client logos">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+</section>
+
+<!-- =========================== GOOD FOOD, GREAT COMPANY =========================== -->
+<section class="section" id="delivery" aria-labelledby="gf-title">
+  <div class="container">
+    <div class="rv" style="text-align:center;margin-bottom:clamp(56px,7vw,96px)">
+      <p class="eyebrow" style="justify-content:center" id="gfEyebrow"></p>
+      <h2 id="gf-title"></h2>
+    </div>
+    <div class="rows" id="rowsList"></div>
+  </div>
+</section>
+
+<!-- =========================== ESSENTIALS =========================== -->
+<section class="section band" aria-labelledby="ess-title">
+  <div class="container">
+    <div class="section-head rv">
+      <div>
+        <p class="eyebrow" id="essEyebrow"></p>
+        <h2 id="ess-title"></h2>
+      </div>
+      <a href="#order" class="link" id="essLink"></a>
+    </div>
+    <div class="essentials rv-stagger" id="essList"></div>
+  </div>
+</section>
+
+<!-- =========================== STORY =========================== -->
+<section class="section" id="story" aria-labelledby="story-title">
+  <div class="container">
+    <div class="story">
+      <div class="story-year rv">
+        <p class="eyebrow" id="storyYearEyebrow"></p>
+        <div class="num" id="storyYear" data-count="2017" aria-label="2017">0</div>
+        <p class="cap" id="storyYearCap"></p>
+      </div>
+      <div class="story-copy rv">
+        <p class="eyebrow" id="storyCopyEyebrow"></p>
+        <h2 id="story-title"></h2>
+        <div id="storyParas"></div>
+        <p class="tagline" id="storyTagline"></p>
+      </div>
+    </div>
+
+    <div class="services rv-stagger" id="svcList"></div>
+  </div>
+</section>
+
+<!-- =========================== LOCATION =========================== -->
+<section class="section band" id="location" aria-labelledby="loc-title">
+  <div class="container">
+    <div class="location">
+      <div class="loc-copy rv">
+        <p class="eyebrow" id="locEyebrow"></p>
+        <h2 id="loc-title"></h2>
+        <p class="muted" id="locIntro"></p>
+        <address id="locAddress"></address>
+        <div class="stats" id="locStats"></div>
+        <div class="loc-actions" id="locActions">
+          <a id="locDirBtn" href="#" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+            <span id="locDirLabel"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a id="locCallBtn" href="#" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2.1Z"/></svg>
+            <span id="locCallLabel"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map-card rv">
+        <div class="map-visual" id="mapVisual" aria-label="Map of JayCee Trading & Services">
+          <iframe id="mapIframe"
+            title="JayCee Trading & Services on Google Maps"
+            src=""
+            width="100%" height="100%" style="border:0;position:absolute;inset:0"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="map-label" id="mapLabel">Now open · B.M. Road</div>
+        </div>
+        <div class="map-foot" id="mapFoot">
+          <div>
+            <p class="eyebrow" id="mapKicker"></p>
+            <h3 id="mapTitle"></h3>
+            <p class="muted" id="mapDesc" style="font-size:var(--t-sm)"></p>
+            <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+              <a id="mapDirLink" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm"></a>
+              <a id="mapCallLink" href="#" class="btn btn-outline btn-sm">Call us</a>
+            </div>
+          </div>
+          <dl class="hours" id="mapHours"></dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FAQ =========================== -->
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="faq">
+      <div class="faq-head rv">
+        <p class="eyebrow">Quick answers</p>
+        <h2 id="faq-title">Good questions.<br><em>Simple answers.</em></h2>
+        <p class="muted" style="margin-top:16px;max-width:30ch">Can't find what you're looking for? Call or message us and a real person will reply.</p>
+      </div>
+      <div class="faq-list rv" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== MID CTA =========================== -->
+<section class="section band cta-mid" id="midCta" aria-labelledby="mid-title">
+  <div class="container rv">
+    <p class="eyebrow" style="justify-content:center" id="midEyebrow"></p>
+    <h2 id="mid-title"></h2>
+    <p id="midDesc"></p>
+    <a id="midBtn" href="#" class="btn btn-primary magnetic"></a>
+  </div>
+</section>
+
+<!-- =========================== FINAL CTA =========================== -->
+<section class="cta-final" id="order" aria-labelledby="final-title">
+  <div class="bg" aria-hidden="true">
+    <img class="parallax" data-speed="0.1" id="finalBgImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy">
+  </div>
+  <div class="container inner">
+    <div class="rv">
+      <p class="eyebrow" id="finalEyebrow"></p>
+      <h2 id="final-title"></h2>
+    </div>
+    <div class="rv" style="display:flex;gap:16px;flex-wrap:wrap">
+      <a id="finalCta1" href="#" class="btn btn-green magnetic" style="padding:16px 28px"></a>
+      <a id="finalCta2" href="#" class="btn btn-ghost"></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =========================== FOOTER =========================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid" id="footerGrid">
+      <div class="footer-brand" id="footerBrand"></div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footerCopy"></span>
+      <span id="footerLoc"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Admin launcher (opens editor directly — no login) -->
+<button class="admin-launch" id="adminLaunch" aria-label="Open site editor" title="Edit site content">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+</button>
+
+<!-- Admin drawer -->
+<aside class="admin-panel" id="adminPanel" aria-label="Site editor" aria-hidden="true">
+  <div class="admin-head">
+    <div>
+      <small>Site editor</small>
+      <h3>JayCee Trading CMS</h3>
+    </div>
+    <button class="admin-close" id="adminClose" aria-label="Close editor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav class="admin-tabs" id="adminTabs" role="tablist"></nav>
+  <div class="admin-body" id="adminBody"></div>
+  <div class="admin-foot">
+    <span class="meta" id="saveMeta">Auto-saved to this browser</span>
+    <div class="grp">
+      <button class="btn-dan" id="btnReset" type="button">Reset to default</button>
+      <button class="btn-sec" id="btnExport" type="button">Export JSON</button>
+      <label class="btn-sec" for="importFile" style="cursor:pointer">Import</label>
+      <input type="file" id="importFile" accept="application/json" hidden>
+      <button class="btn-save" id="btnClose" type="button">Done</button>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $  = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
+
+/* ---------- Year ---------- */
+const yearEl = $('#year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- Hero reveal ---------- */
+  const hero = $('#hero');
+  requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('is-ready')));
+
+  /* ---------- Nav: scroll shadow + progress bar ---------- */
+  const nav = $('#nav'), bar = $('#progressBar');
+  let ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      nav.classList.toggle('is-scrolled', y > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+      if (!reduceMotion) updateParallax();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  /* ---------- Mobile menu ---------- */
+  const burger = $('#burger'), menu = $('#mobileMenu');
+  let menuOpen = false;
+  function setMenu(open){
+    menuOpen = open;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('is-open', open);
+    const adminOpen = panel && panel.classList.contains('is-open');
+    document.body.style.overflow = (open || adminOpen) ? 'hidden' : '';
+  }
+  burger.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!menuOpen); });
+  menu.addEventListener('click', e => {
+    if (e.target === menu) { setMenu(false); return; }
+    if (e.target.closest('a') || e.target.closest('.btn')) setMenu(false);
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) setMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) setMenu(false); });
+
+  // Body overflow helper used by admin CMS too
+  window.__syncBodyOverflow = (locked) => {
+    if (locked) { document.body.style.overflow = 'hidden'; }
+    else if (!menuOpen) document.body.style.overflow = '';
+  };
+
+  /* ---------- Smooth anchor scroll (offset for sticky nav) ---------- */
+  $$('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight - 1);
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+      history.replaceState(null, '', id);
+    });
+  });
+
+  /* ---------- Flip cards (touch toggle + keyboard) ---------- */
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  $$('.flip').forEach(card => {
+    const toggle = () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', String(flipped));
+    };
+    card.addEventListener('click', e => {
+      // Allow links on the back to work normally; otherwise toggle on touch devices.
+      if (e.target.closest('a')) return;
+      if (isTouch) toggle();
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      if (e.key === 'Escape') { card.classList.remove('is-flipped'); card.setAttribute('aria-pressed','false'); }
+    });
+    card.addEventListener('focusout', e => {
+      if (!card.contains(e.relatedTarget)) { /* keep state on blur for touch, reset keyboard */ }
+    });
+  });
+
+  /* ---------- Category carousel ---------- */
+  const track = $('#catCarousel'), prev = $('#catPrev'), next = $('#catNext');
+  function step(){ const c = track.querySelector('.cat'); return c ? c.getBoundingClientRect().width + 24 : 300; }
+  function updateArrows(){
+    prev.disabled = track.scrollLeft <= 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+  track.addEventListener('scroll', updateArrows, { passive:true });
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+
+  /* ---------- Marquee: duplicate logos for seamless loop ---------- */
+  const mTrack = $('#marqueeTrack');
+  const clones = Array.from(mTrack.children).map(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden','true'); return c; });
+  clones.forEach(c => mTrack.appendChild(c));
+
+  /* ---------- Scroll reveal ---------- */
+  const revealEls = $$('.rv, .rv-stagger');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Count-up ---------- */
+  const counters = $$('[data-count]');
+  function animateCount(el){
+    const end = parseInt(el.dataset.count, 10);
+    if (reduceMotion) { el.textContent = end; return; }
+    const dur = 1800, start = performance.now();
+    const from = 0;
+    const ease = t => 1 - Math.pow(1 - t, 4);
+    function tick(now){
+      const p = Math.min((now - start) / dur, 1);
+      el.textContent = Math.round(from + (end - from) * ease(p));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const cio = ('IntersectionObserver' in window) ? new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { animateCount(en.target); cio.unobserve(en.target); } });
+  }, { threshold: 0.5 }) : null;
+  function observeCounter(el){ if (cio) cio.observe(el); else animateCount(el); }
+  counters.forEach(observeCounter);
+  window.__countIO = { observe: observeCounter };
+
+  /* ---------- Parallax (transform only) ---------- */
+  function updateParallax(){
+    const vh = window.innerHeight;
+    const pItems = $$('.parallax'); // query fresh so admin re-renders pick up new images
+    pItems.forEach(img => {
+      const wrap = img.parentElement;
+      const r = wrap.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const speed = parseFloat(img.dataset.speed || '0.1');
+      const center = r.top + r.height / 2 - vh / 2;
+      const offset = -center * speed;
+      img.style.transform = 'translate3d(0,' + offset.toFixed(2) + 'px,0)';
+    });
+  }
+  if (!reduceMotion) { updateParallax(); window.addEventListener('resize', updateParallax); }
+
+  /* ---------- Magnetic buttons ---------- */
+  if (!reduceMotion && !isTouch) {
+    $$('.magnetic').forEach(btn => {
+      const strength = 0.3;
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * strength;
+        const y = (e.clientY - r.top - r.height / 2) * strength;
+        btn.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ---------- FAQ accordion (smooth height + typewriter answer) ---------- */
+  const faqBtns = $$('.faq-q');
+
+  // Prepare each answer: a ghost copy (reserves height, read by screen readers)
+  // and a visible typed overlay that is animated character by character.
+  $$('.faq-a > div').forEach(box => {
+    const text = box.textContent.trim();
+    box.innerHTML = '';
+    const wrap = document.createElement('span');
+    wrap.className = 'faq-text';
+    wrap.dataset.text = text;
+    wrap.innerHTML = '<span class="ghost">' + text.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</span>' +
+                     '<span class="typed" aria-hidden="true"><span class="chars"></span><span class="caret"></span></span>';
+    box.appendChild(wrap);
+  });
+
+  function stopTyping(panel){
+    const wrap = panel.querySelector('.faq-text');
+    if (wrap && wrap._raf) { cancelAnimationFrame(wrap._raf); wrap._raf = null; }
+  }
+  function typeAnswer(panel){
+    const wrap = panel.querySelector('.faq-text'); if (!wrap) return;
+    const chars = wrap.querySelector('.chars');
+    const text = wrap.dataset.text;
+    stopTyping(panel);
+    wrap.classList.remove('is-done');
+    if (reduceMotion) { chars.textContent = text; wrap.classList.add('is-done'); return; }
+    chars.textContent = '';
+    // ~14ms per character, but never longer than ~1.8s for long answers
+    const perChar = Math.min(14, 1800 / text.length);
+    const start = performance.now() + 180; // small delay so the panel starts opening first
+    let shown = 0;
+    function tick(now){
+      const target = Math.min(text.length, Math.floor((now - start) / perChar));
+      if (target > shown) { shown = target; chars.textContent = text.slice(0, shown); }
+      if (shown < text.length) wrap._raf = requestAnimationFrame(tick);
+      else { wrap._raf = null; setTimeout(() => wrap.classList.add('is-done'), 600); }
+    }
+    wrap._raf = requestAnimationFrame(tick);
+  }
+
+  function closePanel(btn){
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    stopTyping(panel);
+    panel.style.height = panel.scrollHeight + 'px';
+    requestAnimationFrame(() => { panel.style.height = '0px'; });
+    btn.setAttribute('aria-expanded','false');
+  }
+  function openPanel(btn){
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    panel.style.height = panel.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded','true');
+    typeAnswer(panel);
+    const onEnd = (e) => { if (e.propertyName === 'height' && btn.getAttribute('aria-expanded') === 'true') panel.style.height = 'auto'; panel.removeEventListener('transitionend', onEnd); };
+    panel.addEventListener('transitionend', onEnd);
+  }
+  faqBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      faqBtns.forEach(b => { if (b !== btn && b.getAttribute('aria-expanded') === 'true') closePanel(b); });
+      isOpen ? closePanel(btn) : openPanel(btn);
+    });
+  });
+  // Recalculate open panel on resize to avoid clipping
+  window.addEventListener('resize', () => {
+    faqBtns.forEach(b => { if (b.getAttribute('aria-expanded') === 'true') { const p = document.getElementById(b.getAttribute('aria-controls')); p.style.height = 'auto'; } });
+  });
+
+  /* ---------- Open / closed status (Asia/Manila) ---------- */
+  (function(){
+    const el = $('#openStatus'); if (!el) return;
+    try {
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone:'Asia/Manila' }));
+      const d = now.getDay(), h = now.getHours();
+      const open = d >= 1 && d <= 6 && h >= 8 && h < 18;
+      el.textContent = open ? 'Open now' : 'Closed now · Opens 8:00 AM';
+      if (!open) { el.style.color = 'var(--c-ink-2)'; }
+    } catch(e){}
+  })();
+
+  /* ---------- Image fallback: hide broken images so bg colour shows ---------- */
+  $$('img').forEach(img => {
+    img.addEventListener('error', () => { img.style.visibility = 'hidden'; }, { once:true });
+  });
+
+  onScroll();
+})();
+</script>
+
+<!-- =========================================================
+     CMS / ADMIN
+     ========================================================= -->
+<script>
+(function(){
+'use strict';
+const LS_KEY = 'jaycee_site_state_v2';
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $  = (s,c=document) => c.querySelector(s);
+const $$ = (s,c=document) => Array.from(c.querySelectorAll(s));
+
+/* ---------- Icon library (SVG) ---------- */
+const ICONS = {
+  drag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="1.2"/><circle cx="9" cy="12" r="1.2"/><circle cx="9" cy="18" r="1.2"/><circle cx="15" cy="6" r="1.2"/><circle cx="15" cy="12" r="1.2"/><circle cx="15" cy="18" r="1.2"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>',
+  down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>',
+  image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>',
+  video: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M22 8l-6 4 6 4V8z"/></svg>'
+};
+
+/* ---------- Default state (mirrors current live copy) ---------- */
+const DEFAULT = {
+  brand: {
+    name: 'JayCee Trading',
+    tagline: 'Est. 2017 · Palawan',
+    phone: '+63 917 123 4567',
+    email: 'hello@jayceetrading.ph',
+    orderLabel: 'Order Online',
+    accent: '#B3261E',
+    green: '#1E8E4A',
+    fontHead: 'intertight' // intertight | instrument
+  },
+  logo: {
+    src: '', mime: '', name: '', size: 0, analysis: null,
+    approved: false, approvedAt: 0,
+    headerH: 36,      // desktop + tablet header height (px)
+    headerHM: 30,     // mobile header height (px)
+    footerH: 40,      // footer height (px)
+    heroH: 72,        // hero height (px, scaled 72% on mobile)
+    showWordmark: false,
+    heroShow: false,
+    favicon: false
+  },
+  nav: [
+    { label: 'Products', href: '#products' },
+    { label: 'Wholesale', href: '#wholesale' },
+    { label: 'Our Story', href: '#story' },
+    { label: 'Delivery', href: '#delivery' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#location' }
+  ],
+  hero: {
+    eyebrow: 'Puerto Princesa · Frozen food & imported meats',
+    line1: 'Quality food.',
+    line2: 'Reliable supply.',
+    line3: '<em>Delivered across Palawan.</em>',
+    lede: 'Premium imported meats, seafood, dairy and frozen essentials for family kitchens, restaurants, resorts and retailers across the island.',
+    cta1Label: 'Explore Products',
+    cta1Href: '#products',
+    cta2Label: 'Wholesale Enquiry',
+    cta2Href: '#wholesale',
+    footnote: 'Cold chain · Island-wide delivery · Family owned since 2017',
+    proof: 'Serving 200+ Palawan kitchens',
+    tag: 'Est. 2017 · Palawan',
+    glassTitle: 'Cold chain, never broken',
+    glassSub: '−18°C from arrival to your kitchen',
+    bg: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1800&q=85',
+    bgFallback: '#5a2a24'
+  },
+  categories: {
+    eyebrow: 'What we distribute',
+    title: 'Everything your kitchen needs.',
+    viewAllLabel: 'View all products',
+    items: [
+      { title: 'Meats', sub: 'Beef · Pork · Lamb', kicker: 'Category 01', desc: 'US, Australian and local beef, pork cuts, lamb racks and premium steaks, portioned to order.', cta: 'Browse meats', fallback: '#5a2a24', img: 'https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=900&q=80', alt: 'Raw marbled beef steaks' },
+      { title: 'Seafood', sub: 'Salmon · Prawns · Squid', kicker: 'Category 02', desc: 'Norwegian salmon, tiger prawns, scallops, squid rings and fish fillets, flash frozen at source.', cta: 'Browse seafood', fallback: '#c9846b', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80', alt: 'Fresh salmon fillet with herbs' },
+      { title: 'Dairy & Cheese', sub: 'Butter · Cream · Cheese', kicker: 'Category 03', desc: 'Mozzarella, cheddar, parmesan, cream cheese, butter blocks and whipping cream for kitchens and bakeries.', cta: 'Browse dairy', fallback: '#d9b25a', img: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=900&q=80', alt: 'Assorted cheeses' },
+      { title: 'Sausages & Cold Cuts', sub: 'Bacon · Ham · Salami', kicker: 'Category 04', desc: 'Smoked bacon, Hungarian and bratwurst sausages, honey ham, salami and deli slices for breakfast and boards.', cta: 'Browse cold cuts', fallback: '#8c3b32', img: 'https://images.unsplash.com/photo-1528607929212-2636ec44253e?auto=format&fit=crop&w=900&q=80', alt: 'Smoked bacon strips' },
+      { title: 'Frozen & Fries', sub: 'Fries · Nuggets · Veg', kicker: 'Category 05', desc: 'Shoestring and crinkle fries, hash browns, nuggets, mixed vegetables and pastry, ready for the fryer or oven.', cta: 'Browse frozen', fallback: '#d7a04a', img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80', alt: 'Golden French fries' }
+    ]
+  },
+  featured: [
+    { kicker: 'Our signature', title: 'Imported & specialty meats', cta: 'Explore the range', desc: 'Hand-selected ribeye, striploin, tenderloin, short ribs and brisket from trusted US and Australian suppliers.', bullets: ['USDA Choice & Prime', 'Australian grass-fed', 'Custom portioning available'], btn: 'Explore meats', fallback: '#5a2a24', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80', alt: 'Seared sliced steak' },
+    { kicker: 'From the sea', title: 'Frozen seafood', cta: 'Explore the range', desc: 'Flash-frozen within hours of catch so every fillet and prawn arrives with its texture and flavour intact.', bullets: ['Norwegian salmon portions', 'Black tiger prawns', 'Scallops, squid & fish fillets'], btn: 'Explore seafood', fallback: '#c9846b', img: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=80', alt: 'Prawns on ice' },
+    { kicker: 'Kitchen staples', title: 'Dairy & cheese', cta: 'Explore the range', desc: 'Pizza mozzarella, aged cheddar, cream cheese, butter and cream, stocked for bakeries, cafés and hotel kitchens.', bullets: ['Block & shredded cheeses', 'Unsalted & salted butter', 'Whipping & cooking cream'], btn: 'Explore dairy', fallback: '#d9b25a', img: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=1200&q=80', alt: 'Artisan cheeses' }
+  ],
+  trusted: {
+    eyebrow: 'Trusted by',
+    title: 'Trusted by Palawan\u2019s leading kitchens.',
+    items: [
+      { name: 'Astoria Palawan', color: '#1E6B8C' },
+      { name: 'NCCC', color: '#D7261E' },
+      { name: 'Robinsons Place Palawan', color: '#1C4C9C' },
+      { name: 'Hue Hotels', color: '#E07A1F' },
+      { name: 'El Nido Resorts', color: '#1F7A5C' },
+      { name: 'Best Western Plus', color: '#B5121B' }
+    ]
+  },
+  goodfood: {
+    eyebrow: 'Good food. Great company.',
+    title: 'Good food. <em>Great company.</em>',
+    rows: [
+      { eyebrow: 'For home', title: 'Something good.<br><em>For every table.</em>', desc: 'From weeknight dinners to Sunday feasts, stock your freezer with restaurant-grade steaks, salmon, cheese and cold cuts, in family-sized portions, delivered to your door.', linkLabel: 'Shop for home', linkHref: '#order', fallback: '#6b4a3a', img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80', alt: 'Family table with grilled meats', reverse: false },
+      { eyebrow: 'For business', title: 'Your menu.<br><em>Our commitment.</em>', desc: 'Restaurants, resorts, hotels and retailers across Palawan rely on us for consistent quality, fair wholesale pricing and a supply schedule that never leaves the kitchen short.', linkLabel: 'Wholesale enquiry', linkHref: '#location', fallback: '#3a3a3c', img: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1400&q=80', alt: 'Professional kitchen', reverse: true },
+      { eyebrow: 'Delivery', title: 'Carefully stored.<br><em>Personally handled.</em>', desc: 'Every order is kept at temperature from our cold room to your kitchen. We pack it ourselves, drive it ourselves and hand it over ourselves, so nothing is left to chance.', linkLabel: 'Delivery details', linkHref: '#faq', fallback: '#4b5563', img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80', alt: 'Cold storage warehouse', reverse: false }
+    ]
+  },
+  essentials: {
+    eyebrow: 'The everyday essentials',
+    title: 'The everyday essentials.',
+    linkLabel: 'Browse all products',
+    linkHref: '#order',
+    items: [
+      { title: 'Sausages & cold cuts', desc: 'Bacon, ham, salami and sausages for breakfast service and grazing boards.', fallback: '#8c3b32', img: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?auto=format&fit=crop&w=1000&q=80', alt: 'Charcuterie', href: '#order' },
+      { title: 'Frozen essentials', desc: 'Fries, nuggets, hash browns and vegetables that go from freezer to plate in minutes.', fallback: '#d7a04a', img: 'https://images.unsplash.com/photo-1518013431117-eb1465fa5752?auto=format&fit=crop&w=1000&q=80', alt: 'Fries', href: '#order' },
+      { title: 'Baking & pantry', desc: 'Butter, cream, puff pastry and the pantry staples your bakery runs on.', fallback: '#c9a06b', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80', alt: 'Baked loaves', href: '#order' }
+    ]
+  },
+  story: {
+    yearEyebrow: 'Since 2017',
+    year: 2017,
+    yearCap: 'The year a family in Puerto Princesa decided the island deserved better food.',
+    copyEyebrow: 'Family owned & operated',
+    title: 'A family passion.<br><em>A Palawan story.</em>',
+    paragraphs: [
+      'JayCee Trading & Services began in 2017 as a small family venture with a simple idea: bring the quality of imported meats, seafood and dairy that we loved to the kitchens of Palawan, without the compromise that distance usually brings.',
+      'What started with a single chest freezer and a handful of loyal neighbours has grown into a trusted supplier for the island\u2019s best hotels, restaurants and supermarkets. The values have not changed. We still taste what we sell, we still know our customers by name, and we still pick up the phone ourselves.'
+    ],
+    tagline: 'Good products. Reliable personal service.',
+    services: [
+      { title: 'Cold storage', front: 'Temperature-controlled from arrival to dispatch.', backKicker: 'Cold storage', backDesc: 'Our dedicated cold room and blast freezers hold every product at a constant −18°C, logged daily, so the cold chain is never broken.', linkLabel: 'How we store' },
+      { title: 'Careful packing', front: 'Insulated, sealed and labelled by hand.', backKicker: 'Careful packing', backDesc: 'Orders are vacuum sealed where needed, packed with ice gel in insulated boxes and checked twice before they leave the warehouse.', linkLabel: 'Packing standards' },
+      { title: 'Local delivery', front: 'Puerto Princesa and across the island.', backKicker: 'Local delivery', backDesc: 'Same-day delivery within the city and scheduled runs to El Nido, San Vicente, Coron and beyond with our refrigerated vehicles.', linkLabel: 'Delivery areas' },
+      { title: 'Personal service', front: 'Real people who know your order.', backKicker: 'Personal service', backDesc: 'Talk to the family directly. We help you plan menus, manage stock levels and find specialty items that are hard to source on the island.', linkLabel: 'Talk to us' }
+    ]
+  },
+  location: {
+    eyebrow: 'Find us',
+    title: 'We\u2019ve moved.<br><em>Come find us.</em>',
+    intro: 'Our new, larger warehouse and showroom is now open on B.M. Road, with more cold storage, easier parking and a wider range on the shelves.',
+    name: 'JayCee Trading & Services',
+    addressLine1: 'Dorothy Ave., B.M. Road, Brgy. San Pedro',
+    addressLine2: 'Puerto Princesa City, Palawan 5300',
+    dirUrl: 'https://maps.app.goo.gl/1891oT84hS5W7Ygz9',
+    dirLabel: 'Get Directions',
+    callLabel: '+63 917 123 4567',
+    stats: [
+      { n: 10, unit: 'min', label: 'from city proper' },
+      { n: 15, unit: 'min', label: 'from the airport' },
+      { n: 20, unit: 'min', label: 'from the sea port' }
+    ],
+    mapKicker: 'Our new home',
+    mapTitle: 'Find us on B.M. Road.',
+    mapDesc: 'Look for the red JayCee sign beside the warehouse gate. Parking is available on site for cars and delivery vans.',
+    mapBtnLabel: 'Open in Google Maps',
+    mapLabel: 'JayCee Trading · B.M. Road',
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.022030793975!2d118.7521104!3d9.764201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33b563000ff94ee5%3A0x361d56d8cceee597!2sJayCee%20Trading%20%26%20Services!5e0!3m2!1sen!2sph!4v1793257309192!5m2!1sen!2sph',
+    hours: [
+      { dt: 'Store hours', dd: 'Monday – Saturday · 8:00 AM – 6:00 PM' },
+      { dt: 'Sunday', dd: 'Closed · Deliveries by arrangement' },
+      { dt: 'Wholesale pick-up', dd: 'Weekdays · 7:00 AM – 5:00 PM' }
+    ]
+  },
+  faq: {
+    eyebrow: 'Quick answers',
+    title: 'Good questions.<br><em>Simple answers.</em>',
+    intro: "Can\u2019t find what you\u2019re looking for? Call or message us and a real person will reply.",
+    items: [
+      { q: 'Do you deliver to Puerto Princesa?', a: 'Yes. We deliver across Puerto Princesa City, usually same day for orders placed before noon. For El Nido, San Vicente, Coron and other municipalities we run scheduled refrigerated deliveries each week.' },
+      { q: 'Can I order in bulk for my restaurant or hotel?', a: 'Absolutely. Most of our business is wholesale. We offer tiered pricing, standing weekly orders and dedicated account support for restaurants, resorts, hotels and retailers.' },
+      { q: 'How do I place an order?', a: 'Order online through our shop, message us on Facebook or Viber, or call the store directly. Wholesale customers can also send a purchase order by email and we\u2019ll confirm stock and delivery time within the hour.' },
+      { q: 'What payment methods do you accept?', a: 'Cash on delivery, GCash, Maya and bank transfer. Approved wholesale accounts may apply for credit terms.' },
+      { q: 'How do you ensure product freshness?', a: 'Every product stays frozen at −18°C from the moment it arrives until it reaches you. We monitor temperatures daily, rotate stock strictly by date, and deliver in insulated boxes or refrigerated vehicles.' },
+      { q: 'Can I schedule regular deliveries?', a: 'Yes. Many of our business customers have a standing order delivered on fixed days each week. Tell us what you need and how often and we\u2019ll build a schedule around your kitchen.' }
+    ]
+  },
+  midCta: {
+    eyebrow: 'Still curious?',
+    title: 'Looking for something <em>specific?</em>',
+    desc: 'If you can\u2019t find a product on our list, chances are we can source it. Send us an enquiry and we\u2019ll get back to you the same day.',
+    btnLabel: 'Send Order Enquiry',
+    btnHref: 'mailto:hello@jayceetrading.ph?subject=Order%20Enquiry'
+  },
+  finalCta: {
+    eyebrow: 'Ready when you are',
+    title: 'Let\u2019s keep your <em>kitchen supplied.</em>',
+    bg: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2000&q=80',
+    bgFallback: '#3a3a3c',
+    cta1Label: 'Order Online',
+    cta1Href: '#products',
+    cta2Label: 'Talk to the team',
+    cta2Href: '#location'
+  },
+  footer: {
+    brandText: 'Frozen food and imported meats distributor serving homes, restaurants, resorts and retailers across Palawan.',
+    cols: [
+      { title: 'Explore', links: [
+        { label: 'Products', href: '#products' },
+        { label: 'Wholesale', href: '#wholesale' },
+        { label: 'Our Story', href: '#story' },
+        { label: 'Delivery', href: '#delivery' },
+        { label: 'FAQ', href: '#faq' }
+      ]},
+      { title: 'Partner with us', links: [
+        { label: 'Restaurants & cafés', href: '#wholesale' },
+        { label: 'Hotels & resorts', href: '#wholesale' },
+        { label: 'Supermarkets', href: '#wholesale' },
+        { label: 'Request a price list', href: '#location' }
+      ]},
+      { title: 'Contact', links: [
+        { label: '+63 917 123 4567', href: 'tel:+639171234567' },
+        { label: 'hello@jayceetrading.ph', href: 'mailto:hello@jayceetrading.ph' },
+        { label: 'Dorothy Ave., B.M. Road, Puerto Princesa City, Palawan 5300', href: '#location', muted: true },
+        { label: 'Mon – Sat · 8:00 AM – 6:00 PM', href: '#location', muted: true }
+      ]}
+    ],
+    copy: '© {year} JayCee Trading & Services. All rights reserved.',
+    loc: 'Puerto Princesa, Palawan · Philippines'
+  },
+  social: {
+    items: [
+      { label: 'Facebook', url: '#', icon: 'facebook' }
+    ]
+  }
+};
+
+/* ---------- State helpers ---------- */
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+let state = loadState();
+
+function loadState(){
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return clone(DEFAULT);
+    const s = JSON.parse(raw);
+    // deep merge: fall back to defaults for missing keys
+    return Object.assign(clone(DEFAULT), s);
+  } catch(e){ return clone(DEFAULT); }
+}
+function saveState(){
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  catch(e){ toast('Storage full — export your JSON to save', true); }
+}
+
+/* ---------- Utilities ---------- */
+function el(tag, cls, html){ const n = document.createElement(tag); if (cls) n.className = cls; if (html !== undefined) n.innerHTML = html; return n; }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+function toast(msg, isErr){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  if (isErr) t.style.background = 'var(--c-accent)'; else t.style.background = 'var(--c-ink)';
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function readFileAsDataURL(file){
+  return new Promise((res, rej) => {
+    const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file);
+  });
+}
+
+/* =========================================================
+   RENDER FUNCTIONS
+   ========================================================= */
+
+function setText(id, html){ const n = document.getElementById(id); if (n) n.innerHTML = html; }
+function setAttr(id, attr, val){ const n = document.getElementById(id); if (n) n.setAttribute(attr, val); }
+function setImg(id, src, fallback){
+  const n = document.getElementById(id); if (!n) return;
+  n.src = src || '';
+  if (fallback) n.parentElement.style.setProperty('--fallback', fallback);
+  else if (n.parentElement) n.parentElement.style.removeProperty('--fallback');
+}
+
+/* ---------- Official logo helpers ---------- */
+const MARK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1 3-5 4.5-5 9a5 5 0 0 0 10 0c0-4.5-4-6-5-9Z"/><path d="M9 13.5c.5 1.5 1.5 2.5 3 3"/></svg>';
+function ensureLogoState(){ state.logo = Object.assign(clone(DEFAULT.logo), state.logo || {}); return state.logo; }
+function hasLiveLogo(){ const L = state.logo; return !!(L && L.approved && L.src); }
+/* Returns the inner markup for a .brand link (header or footer) */
+function brandInner(where){
+  const word = `<span class="brand-word"><small>${esc(state.brand.tagline)}</small><strong>${esc(state.brand.name)}</strong></span>`;
+  if (!hasLiveLogo()) return `<span class="brand-mark" aria-hidden="true">${MARK_SVG}</span>${word}`;
+  const showWord = !!state.logo.showWordmark;
+  return `<img class="brand-logo brand-logo--${where}" src="${esc(state.logo.src)}" alt="${showWord ? '' : esc(state.brand.name)}" decoding="async">${showWord ? word : ''}`;
+}
+/* Pushes logo sizes into CSS custom properties (live everywhere) */
+function applyLogoVars(){
+  const L = ensureLogoState(), r = document.documentElement.style;
+  r.setProperty('--logo-h-header', (L.headerH || 36) + 'px');
+  r.setProperty('--logo-h-header-m', (L.headerHM || 30) + 'px');
+  r.setProperty('--logo-h-footer', (L.footerH || 40) + 'px');
+  r.setProperty('--logo-h-hero', (L.heroH || 72) + 'px');
+}
+/* Optional: use the approved logo as the browser tab icon */
+function applyFavicon(){
+  const L = state.logo || {};
+  let link = document.querySelector('link[rel="icon"][data-cms]');
+  if (L.favicon && hasLiveLogo()){
+    if (!link){ link = document.createElement('link'); link.rel = 'icon'; link.dataset.cms = '1'; document.head.appendChild(link); }
+    link.type = L.mime || 'image/png';
+    link.href = L.src;
+  } else if (link) link.remove();
+}
+
+/* ---------- Nav ---------- */
+function renderNav(){
+  const ul = $('#navLinks'); ul.innerHTML = '';
+  const mm = $('#mobileMenu');
+  // remove any previously state-rendered links from mobile menu (leave the Order Online button)
+  $$('a[data-nav-cms]', mm).forEach(a => a.remove());
+  state.nav.forEach(n => {
+    const a = document.createElement('a');
+    a.href = n.href; a.textContent = n.label;
+    ul.appendChild(a);
+    const ma = a.cloneNode(true);
+    ma.setAttribute('data-nav-cms','1');
+    mm.insertBefore(ma, mm.querySelector('.btn'));
+  });
+  const tel = $('#navTel');
+  tel.href = 'tel:' + state.brand.phone.replace(/\s+/g,'');
+  tel.textContent = state.brand.phone;
+  $('#navOrderLabel').textContent = state.brand.orderLabel;
+  $('#navOrderBtn').href = state.finalCta.cta1Href;
+  document.documentElement.style.setProperty('--c-accent', state.brand.accent);
+  document.documentElement.style.setProperty('--c-green', state.brand.green);
+  document.documentElement.style.setProperty('--c-accent-dark', shade(state.brand.accent, -14));
+  document.documentElement.style.setProperty('--c-green-dark', shade(state.brand.green, -14));
+  const headFont = state.brand.fontHead === 'instrument'
+    ? '"Instrument Serif", Georgia, serif'
+    : '"Inter Tight", "Inter", system-ui, sans-serif';
+  document.documentElement.style.setProperty('--f-serif', headFont);
+  document.documentElement.style.setProperty('--f-display', headFont);
+  // brand: official logo (if approved) or default mark + name
+  ensureLogoState();
+  applyLogoVars();
+  const nb = $('#navBrand');
+  if (nb){
+    nb.innerHTML = brandInner('header');
+    nb.classList.toggle('has-logo', hasLiveLogo());
+    nb.setAttribute('aria-label', state.brand.name + ' home');
+  }
+  applyFavicon();
+}
+function shade(hex, percent){
+  const h = hex.replace('#','');
+  const num = parseInt(h.length === 3 ? h.split('').map(c=>c+c).join('') : h, 16);
+  let r = (num >> 16) + Math.round(255 * percent / 100);
+  let g = ((num >> 8) & 0xff) + Math.round(255 * percent / 100);
+  let b = (num & 0xff) + Math.round(255 * percent / 100);
+  r = Math.max(0, Math.min(255, r)); g = Math.max(0, Math.min(255, g)); b = Math.max(0, Math.min(255, b));
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+/* ---------- Hero ---------- */
+function renderHero(){
+  const h = state.hero;
+  setText('heroEyebrow', esc(h.eyebrow));
+  setText('heroLine1', h.line1);
+  setText('heroLine2', h.line2);
+  setText('heroLine3', h.line3);
+  setText('heroLede', esc(h.lede));
+  setText('heroCta1Label', esc(h.cta1Label));
+  setAttr('heroCta1', 'href', h.cta1Href);
+  setText('heroCta2Label', esc(h.cta2Label));
+  setAttr('heroCta2', 'href', h.cta2Href);
+  setText('heroFootNote', esc(h.footnote));
+  setText('heroProof', esc(h.proof || 'Serving 200+ Palawan kitchens'));
+  setText('heroTag', esc(h.tag || 'Est. 2017 · Palawan'));
+  setText('heroGlassTitle', esc(h.glassTitle || 'Cold chain, never broken'));
+  setText('heroGlassSub', esc(h.glassSub || '−18°C from arrival to your kitchen'));
+  setImg('heroBgImg', h.bg, h.bgFallback);
+  const frame = $('#heroMedia');
+  if (frame) frame.style.background = h.bgFallback || 'var(--img-meat)';
+  const heroEl = $('#hero'); if (heroEl) heroEl.style.background = '';
+  // Optional official logo above the hero headline
+  const hl = $('#heroLogo');
+  if (hl){
+    const on = !!(state.logo && state.logo.heroShow && hasLiveLogo());
+    hl.hidden = !on;
+    hl.innerHTML = on ? `<img src="${esc(state.logo.src)}" alt="${esc(state.brand.name)} logo" decoding="async">` : '';
+  }
+}
+
+/* ---------- Categories ---------- */
+const ARROW_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function renderCategories(){
+  setText('catEyebrow', esc(state.categories.eyebrow));
+  setText('cat-title', state.categories.title);
+  $('#catViewAll').innerHTML = esc(state.categories.viewAllLabel) + ' ' + ARROW_SVG;
+  const box = $('#catCarousel'); box.innerHTML = '';
+  state.categories.items.forEach((c, i) => {
+    const art = el('article', 'cat flip');
+    art.setAttribute('role','listitem');
+    art.setAttribute('tabindex','0');
+    art.setAttribute('aria-pressed','false');
+    art.setAttribute('aria-label', c.title + '. Press to see details.');
+    art.style.setProperty('--fallback', c.fallback || '#5a2a24');
+    art.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <img src="${esc(c.img || '')}" alt="${esc(c.alt || c.title)}" loading="lazy"
+               onerror="this.style.visibility='hidden'">
+          <div class="cat-label"><h3>${esc(c.title)}</h3><small>${esc(c.sub || '')}</small></div>
+        </div>
+        <div class="flip-face flip-back">
+          <div>
+            <p class="flip-kicker">${esc(c.kicker || '')}</p>
+            <h3>${esc(c.title)}</h3>
+            <p>${esc(c.desc || '')}</p>
+          </div>
+          <a href="${esc(c.ctaHref || '#order')}" class="link" tabindex="-1">${esc(c.cta || 'Browse')} ${ARROW_SVG}</a>
+        </div>
+      </div>`;
+    box.appendChild(art);
+  });
+  wireFlips(box);
+  updateCarouselArrows();
+}
+
+/* ---------- Featured ---------- */
+function renderFeatured(){
+  const box = $('#featuredList'); box.innerHTML = '';
+  state.featured.forEach((c, i) => {
+    const bullets = (c.bullets || []).map(b => `<li>${esc(b)}</li>`).join('');
+    const art = el('article','feature-card flip');
+    art.tabIndex = 0;
+    art.setAttribute('aria-pressed','false');
+    art.setAttribute('aria-label', c.title + '. Press to see details.');
+    art.style.setProperty('--fallback', c.fallback || '#5a2a24');
+    art.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <img src="${esc(c.img || '')}" alt="${esc(c.alt || c.title)}" loading="lazy"
+               onerror="this.style.visibility='hidden'">
+          <div class="fc-body">
+            <p class="eyebrow">${esc(c.kicker)}</p>
+            <h3>${esc(c.title)}</h3>
+            <span class="fc-arrow">${esc(c.cta)} ${ARROW_SVG}</span>
+          </div>
+        </div>
+        <div class="flip-face flip-back">
+          <div>
+            <p class="flip-kicker">${esc(c.kicker)}</p>
+            <h3>${esc(c.title)}</h3>
+            <p>${esc(c.desc)}</p>
+            <ul>${bullets}</ul>
+          </div>
+          <a href="#order" class="btn btn-primary btn-sm" tabindex="-1">${esc(c.btn || 'Explore')}</a>
+        </div>
+      </div>`;
+    box.appendChild(art);
+  });
+  wireFlips(box);
+}
+
+/* ---------- Trusted logos ---------- */
+function renderTrusted(){
+  setText('trustedEyebrow', esc(state.trusted.eyebrow));
+  setText('trusted-title', state.trusted.title);
+  const track = $('#marqueeTrack'); track.innerHTML = '';
+  const buildLogo = (l) => {
+    const d = document.createElement('div'); d.className = 'logo';
+    d.title = l.name;
+    d.innerHTML = `<svg viewBox="0 0 32 32" fill="none" stroke="${esc(l.color)}" stroke-width="1.8"><rect x="5" y="5" width="22" height="22" rx="6" fill="none"/></svg><span class="wm sans" style="color:${esc(l.color)}">${esc(l.name)}</span>`;
+    return d;
+  };
+  state.trusted.items.forEach(l => track.appendChild(buildLogo(l)));
+  // duplicate for seamless marquee
+  state.trusted.items.forEach(l => { const c = buildLogo(l); c.setAttribute('aria-hidden','true'); track.appendChild(c); });
+}
+
+/* ---------- Good food rows ---------- */
+function renderRows(){
+  setText('gfEyebrow', esc(state.goodfood.eyebrow));
+  setText('gf-title', state.goodfood.title);
+  const box = $('#rowsList'); box.innerHTML = '';
+  state.goodfood.rows.forEach((r, i) => {
+    const row = el('div', 'row rv' + (r.reverse ? ' reverse' : ''));
+    row.innerHTML = `
+      <div class="row-media" style="--fallback:${esc(r.fallback || '#6b4a3a')}">
+        <img class="parallax" data-speed="0.12" src="${esc(r.img || '')}" alt="${esc(r.alt || '')}" loading="lazy"
+             onerror="this.style.visibility='hidden'">
+      </div>
+      <div class="row-text">
+        <p class="eyebrow">${esc(r.eyebrow)}</p>
+        <h3>${r.title}</h3>
+        <p>${esc(r.desc)}</p>
+        <a href="${esc(r.linkHref || '#')}" class="link">${esc(r.linkLabel)} ${ARROW_SVG}</a>
+      </div>`;
+    box.appendChild(row);
+  });
+  wireParallax(box);
+  wireReveal(box);
+}
+
+/* ---------- Essentials ---------- */
+function renderEssentials(){
+  setText('essEyebrow', esc(state.essentials.eyebrow));
+  setText('ess-title', state.essentials.title);
+  const link = $('#essLink'); link.href = state.essentials.linkHref || '#';
+  link.innerHTML = esc(state.essentials.linkLabel) + ' ' + ARROW_SVG;
+  const box = $('#essList'); box.innerHTML = '';
+  state.essentials.items.forEach(e => {
+    const a = el('a', 'ess');
+    a.href = e.href || '#order';
+    a.innerHTML = `
+      <div class="ess-media" style="--fallback:${esc(e.fallback || '#8c3b32')}">
+        <img src="${esc(e.img || '')}" alt="${esc(e.alt || e.title)}" loading="lazy"
+             onerror="this.style.visibility='hidden'">
+      </div>
+      <h3>${esc(e.title)} ${ARROW_SVG}</h3>
+      <p>${esc(e.desc)}</p>`;
+    box.appendChild(a);
+  });
+}
+
+/* ---------- Story ---------- */
+function renderStory(){
+  setText('storyYearEyebrow', esc(state.story.yearEyebrow));
+  setText('storyYearCap', esc(state.story.yearCap));
+  const yEl = $('#storyYear');
+  yEl.textContent = state.story.year;
+  yEl.setAttribute('data-count', state.story.year);
+  setText('storyCopyEyebrow', esc(state.story.copyEyebrow));
+  setText('story-title', state.story.title);
+  const paras = $('#storyParas'); paras.innerHTML = state.story.paragraphs.map(p => `<p>${esc(p)}</p>`).join('');
+  setText('storyTagline', esc(state.story.tagline));
+
+  const box = $('#svcList'); box.innerHTML = '';
+  state.story.services.forEach(s => {
+    const art = el('article','svc flip');
+    art.tabIndex = 0; art.setAttribute('aria-pressed','false');
+    art.setAttribute('aria-label', s.title + '. Press to see details.');
+    art.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 6.5l14.2 11M4.9 17.5l14.2-11"/></svg></div>
+          <div><h3>${esc(s.title)}</h3><p>${esc(s.front)}</p></div>
+        </div>
+        <div class="flip-face flip-back">
+          <div>
+            <p class="flip-kicker">${esc(s.backKicker || s.title)}</p>
+            <p>${esc(s.backDesc || '')}</p>
+          </div>
+          <a href="#" class="link" tabindex="-1">${esc(s.linkLabel || 'Learn more')} ${ARROW_SVG}</a>
+        </div>
+      </div>`;
+    box.appendChild(art);
+  });
+  wireFlips(box);
+}
+
+/* ---------- Location ---------- */
+function renderLocation(){
+  const L = state.location;
+  setText('locEyebrow', esc(L.eyebrow));
+  setText('loc-title', L.title);
+  setText('locIntro', esc(L.intro));
+  $('#locAddress').innerHTML = `<strong>${esc(L.name)}</strong>${esc(L.addressLine1)}<br>${esc(L.addressLine2)}`;
+  const stats = $('#locStats'); stats.innerHTML = '';
+  L.stats.forEach(s => {
+    const d = el('div','stat');
+    d.innerHTML = `<div class="n"><span data-count="${s.n}">0</span><small>${esc(s.unit)}</small></div><div class="l">${esc(s.label)}</div>`;
+    stats.appendChild(d);
+  });
+  setAttr('locDirBtn', 'href', L.dirUrl);
+  setText('locDirLabel', esc(L.dirLabel));
+  setAttr('locCallBtn', 'href', 'tel:' + (state.brand.phone.replace(/\s+/g,'')));
+  setText('locCallLabel', esc(state.brand.phone));
+  setText('mapKicker', esc(L.mapKicker));
+  setText('mapTitle', esc(L.mapTitle));
+  setText('mapDesc', esc(L.mapDesc));
+  setAttr('mapDirLink', 'href', L.dirUrl);
+  $('#mapDirLink').textContent = L.mapBtnLabel;
+  setAttr('mapCallLink', 'href', 'tel:' + state.brand.phone.replace(/\s+/g,''));
+  const iframe = $('#mapIframe');
+  if (iframe && L.mapEmbed) { iframe.src = L.mapEmbed; }
+  const label = $('#mapLabel'); if (label) label.textContent = L.mapLabel || 'Now open · B.M. Road';
+  const hours = $('#mapHours'); hours.innerHTML = '';
+  L.hours.forEach(h => {
+    hours.innerHTML += `<dt>${esc(h.dt)}</dt><dd>${esc(h.dd)}</dd>`;
+  });
+  hours.innerHTML += `<span class="open" id="openStatus"></span>`;
+  initCounters();
+  updateOpenStatus();
+}
+
+/* ---------- FAQ ---------- */
+function renderFAQ(){
+  setText('', '');
+  const head = document.querySelector('.faq-head');
+  head.querySelector('p.eyebrow').id = 'faqEyebrow';
+  head.querySelector('h2').id = 'faq-title';
+  // eyebrow + title
+  const eyebrow = $('#faqEyebrow'); if (eyebrow) eyebrow.textContent = state.faq.eyebrow;
+  setText('faq-title', state.faq.title);
+  const introP = head.querySelector('p.muted'); if (introP) introP.textContent = state.faq.intro;
+  const list = $('#faqList'); list.innerHTML = '';
+  state.faq.items.forEach((item, i) => {
+    const id = 'faq-a' + i, qid = 'faq-q' + i;
+    const wrap = el('div','faq-item');
+    wrap.innerHTML = `
+      <h3><button class="faq-q" aria-expanded="false" aria-controls="${id}" id="${qid}"><span class="q-text">${esc(item.q)}</span>
+        <span class="plus" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      </button></h3>
+      <div class="faq-a" id="${id}" role="region" aria-labelledby="${qid}"><div></div></div>`;
+    list.appendChild(wrap);
+    // prepare text (ghost + typed spans)
+    const box = wrap.querySelector('.faq-a > div');
+    const text = item.a;
+    const s = el('span','faq-text');
+    s.dataset.text = text;
+    s.innerHTML = '<span class="ghost">' + esc(text) + '</span>' +
+                  '<span class="typed" aria-hidden="true"><span class="chars"></span><span class="caret"></span></span>';
+    box.appendChild(s);
+  });
+  wireFAQ();
+}
+
+/* ---------- Mid CTA ---------- */
+function renderMidCta(){
+  setText('midEyebrow', esc(state.midCta.eyebrow));
+  setText('mid-title', state.midCta.title);
+  setText('midDesc', esc(state.midCta.desc));
+  const b = $('#midBtn'); b.href = state.midCta.btnHref;
+  b.innerHTML = esc(state.midCta.btnLabel) + ' ' + ARROW_SVG;
+}
+
+/* ---------- Final CTA ---------- */
+function renderFinal(){
+  setText('finalEyebrow', esc(state.finalCta.eyebrow));
+  setText('final-title', state.finalCta.title);
+  setImg('finalBgImg', state.finalCta.bg, state.finalCta.bgFallback);
+  $('.cta-final .bg').style.background = state.finalCta.bgFallback || 'var(--img-kitchen)';
+  const c1 = $('#finalCta1'), c2 = $('#finalCta2');
+  c1.href = state.finalCta.cta1Href;
+  c1.innerHTML = esc(state.finalCta.cta1Label) + ' ' + ARROW_SVG;
+  c2.href = state.finalCta.cta2Href;
+  c2.textContent = state.finalCta.cta2Label;
+}
+
+/* ---------- Footer ---------- */
+function renderFooter(){
+  const brand = $('#footerBrand');
+  brand.innerHTML = `
+    <a href="#top" class="brand${hasLiveLogo() ? ' has-logo' : ''}" aria-label="${esc(state.brand.name)} home">${brandInner('footer')}</a>
+    <p>${esc(state.footer.brandText)}</p>`;
+  const grid = $('#footerGrid');
+  // remove any extra cols
+  $$('.footer-col', grid).forEach(c => c.remove());
+  state.footer.cols.forEach(col => {
+    const c = el('div','footer-col');
+    c.innerHTML = `<h4>${esc(col.title)}</h4><ul>` +
+      col.links.map(l => {
+        const cls = l.muted ? ' class="muted"' : '';
+        if (l.muted) {
+          return `<li><span${cls}>${esc(l.label)}</span></li>`;
+        }
+        return `<li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`;
+      }).join('') + '</ul>';
+    grid.appendChild(c);
+  });
+  const y = new Date().getFullYear();
+  $('#footerCopy').textContent = state.footer.copy.replace('{year}', y);
+  $('#footerLoc').textContent = state.footer.loc;
+  document.title = state.brand.name + ' — ' + state.hero.line1.replace(/\.|<[^>]+>/g,'').trim() + ' ' + state.hero.line3.replace(/<[^>]+>/g,'').trim();
+}
+
+/* =========================================================
+   RE-INIT helpers (after re-rendering dynamic lists)
+   ========================================================= */
+function wireFlips(scope){
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  $$('.flip', scope || document).forEach(card => {
+    if (card._wired) return;
+    card._wired = true;
+    const toggle = () => {
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', String(flipped));
+    };
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      if (isTouch) toggle();
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      if (e.key === 'Escape') { card.classList.remove('is-flipped'); card.setAttribute('aria-pressed','false'); }
+    });
+  });
+}
+function wireParallax(scope){
+  const imgs = $$('.parallax', scope || document);
+  imgs.forEach(i => { if (!i._wiredP) { i._wiredP = true; } });
+}
+function wireReveal(scope){
+  if (!('IntersectionObserver' in window) || reduceMotion) return;
+  const items = $$('.rv, .rv-stagger', scope || document);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  items.forEach(i => io.observe(i));
+}
+function initCounters(){
+  const counters = $$('[data-count]');
+  if (window.__countIO) counters.forEach(c => window.__countIO.observe(c));
+}
+function updateOpenStatus(){
+  const el = $('#openStatus'); if (!el) return;
+  try {
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone:'Asia/Manila' }));
+    const d = now.getDay(), h = now.getHours(), m = now.getMinutes();
+    const t = h*60 + m;
+    const open = d >= 1 && d <= 6 && t >= 8*60 && t < 18*60;
+    el.textContent = open ? 'Open now' : 'Closed now · Opens 8:00 AM';
+    if (!open) el.style.color = 'var(--c-ink-2)'; else el.style.color = '';
+  } catch(e){}
+}
+function updateCarouselArrows(){
+  const track = document.getElementById('catCarousel'); if (!track) return;
+  const prev = document.getElementById('catPrev'), next = document.getElementById('catNext');
+  if (!prev || !next) return;
+  prev.disabled = track.scrollLeft <= 4;
+  next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+}
+
+/* FAQ wiring (re-init) — duplicated from main script but scoped to new items */
+function wireFAQ(){
+  const faqBtns = $$('.faq-q');
+  function closePanel(btn){
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const wrap = panel.querySelector('.faq-text');
+    if (wrap && wrap._raf) { cancelAnimationFrame(wrap._raf); wrap._raf = null; }
+    panel.style.height = panel.scrollHeight + 'px';
+    requestAnimationFrame(() => { panel.style.height = '0px'; });
+    btn.setAttribute('aria-expanded','false');
+  }
+  function typeAnswer(panel){
+    const wrap = panel.querySelector('.faq-text'); if (!wrap) return;
+    const chars = wrap.querySelector('.chars'); const text = wrap.dataset.text;
+    if (wrap._raf) cancelAnimationFrame(wrap._raf);
+    wrap.classList.remove('is-done');
+    if (reduceMotion) { chars.textContent = text; wrap.classList.add('is-done'); return; }
+    chars.textContent = '';
+    const perChar = Math.min(14, 1800 / text.length);
+    const start = performance.now() + 180; let shown = 0;
+    function tick(now){
+      const target = Math.min(text.length, Math.floor((now - start) / perChar));
+      if (target > shown) { shown = target; chars.textContent = text.slice(0, shown); }
+      if (shown < text.length) wrap._raf = requestAnimationFrame(tick);
+      else { wrap._raf = null; setTimeout(() => wrap.classList.add('is-done'), 600); }
+    }
+    wrap._raf = requestAnimationFrame(tick);
+  }
+  function openPanel(btn){
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    panel.style.height = panel.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded','true');
+    typeAnswer(panel);
+  }
+  faqBtns.forEach(btn => {
+    if (btn._wired) return; btn._wired = true;
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      faqBtns.forEach(b => { if (b !== btn && b.getAttribute('aria-expanded') === 'true') closePanel(b); });
+      isOpen ? closePanel(btn) : openPanel(btn);
+    });
+  });
+}
+
+/* Main render */
+function renderAll(){
+  renderNav(); renderHero(); renderCategories(); renderFeatured();
+  renderTrusted(); renderRows(); renderEssentials(); renderStory();
+  renderLocation(); renderFAQ(); renderMidCta(); renderFinal(); renderFooter();
+  // global re-init for things that attach to new nodes
+  wireFlips();
+  wireParallax();
+  wireReveal();
+  if (window.__onResize) window.__onResize();
+}
+
+/* Expose a resize hook for the main script's carousel / parallax */
+window.addEventListener('resize', () => { updateCarouselArrows(); });
+window.__onResize = () => { updateCarouselArrows(); };
+
+/* =========================================================
+   ADMIN PANEL
+   ========================================================= */
+const panel = $('#adminPanel');
+
+/* --- Open / close panel (no login) --- */
+$('#adminLaunch').addEventListener('click', () => {
+  if (panel.classList.contains('is-open')) closePanel();
+  else openPanel();
+});
+
+function openPanel(){
+  buildPanel();
+  panel.classList.add('is-open');
+  panel.setAttribute('aria-hidden','false');
+  $('#adminLaunch').classList.add('is-open');
+  if (window.__syncBodyOverflow) window.__syncBodyOverflow(true);
+  else document.body.style.overflow = 'hidden';
+}
+function closePanel(){
+  panel.classList.remove('is-open');
+  panel.setAttribute('aria-hidden','true');
+  $('#adminLaunch').classList.remove('is-open');
+  if (window.__syncBodyOverflow) window.__syncBodyOverflow(false);
+  else document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+$('#adminClose').addEventListener('click', closePanel);
+$('#btnClose').addEventListener('click', closePanel);
+
+// Click outside panel content (on the panel bg) closes it (for mobile the panel is full-screen so this is a no-op; useful on desktop)
+panel.addEventListener('click', e => { if (e.target === panel) closePanel(); });
+$('#btnReset').addEventListener('click', () => {
+  if (confirm('Reset all content, images and settings to defaults? This cannot be undone.')){
+    state = clone(DEFAULT); saveState(); renderAll(); buildPanel(); toast('Reset to defaults');
+  }
+});
+$('#btnExport').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type:'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'jaycee-site-' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+});
+$('#importFile').addEventListener('change', async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  try {
+    const text = await f.text();
+    const data = JSON.parse(text);
+    state = Object.assign(clone(DEFAULT), data);
+    saveState(); renderAll(); buildPanel(); toast('Imported settings');
+  } catch(err){ toast('Invalid JSON file', true); }
+  e.target.value = '';
+});
+
+/* =========================================================
+   Build the admin panel UI
+   ========================================================= */
+const TABS = [
+  { id: 'brand',    label: 'Brand & Contact' },
+  { id: 'logo',     label: 'Logo' },
+  { id: 'theme',    label: 'Theme' },
+  { id: 'nav',      label: 'Navigation' },
+  { id: 'hero',     label: 'Hero' },
+  { id: 'cats',     label: 'Categories' },
+  { id: 'feat',     label: 'Featured' },
+  { id: 'logos',    label: 'Trusted By' },
+  { id: 'rows',     label: 'Three Stories' },
+  { id: 'ess',      label: 'Essentials' },
+  { id: 'story',    label: 'Our Story' },
+  { id: 'loc',      label: 'Location' },
+  { id: 'faq',      label: 'FAQ' },
+  { id: 'mid',      label: 'Mid CTA' },
+  { id: 'final',    label: 'Final CTA' },
+  { id: 'footer',   label: 'Footer' }
+];
+
+let activeTab = 'brand';
+
+function buildPanel(){
+  const tabsEl = $('#adminTabs'); tabsEl.innerHTML = '';
+  TABS.forEach(t => {
+    const b = el('button', 'admin-tab' + (t.id === activeTab ? ' active' : ''), t.label);
+    b.setAttribute('role','tab');
+    b.addEventListener('click', () => { activeTab = t.id; buildPanel(); });
+    tabsEl.appendChild(b);
+  });
+  const body = $('#adminBody');
+  body.innerHTML = '';
+  const section = el('div','admin-section active');
+  body.appendChild(section);
+  const render = {
+    brand: renderBrandTab, logo: renderLogoTab, theme: renderThemeTab, nav: renderNavTab, hero: renderHeroTab,
+    cats: renderCatsTab, feat: renderFeatTab, logos: renderLogosTab, rows: renderRowsTab,
+    ess: renderEssTab, story: renderStoryTab, loc: renderLocTab, faq: renderFaqTab,
+    mid: renderMidTab, final: renderFinalTab, footer: renderFooterTab
+  }[activeTab];
+  render(section);
+  body.scrollTop = 0;
+}
+
+/* ---- Field helpers ---- */
+function field(label, control, hint){
+  const w = el('div','admin-field');
+  w.innerHTML = `<label>${esc(label)}</label>`;
+  if (typeof control === 'string') w.insertAdjacentHTML('beforeend', control);
+  else w.appendChild(control);
+  if (hint) w.insertAdjacentHTML('beforeend', `<div class="hint">${esc(hint)}</div>`);
+  return w;
+}
+function input(type, val, onInput, attrs){
+  const i = document.createElement('input');
+  i.type = type; i.value = val == null ? '' : val;
+  if (attrs) for (const k in attrs) i.setAttribute(k, attrs[k]);
+  i.addEventListener('input', () => { onInput(i.value); });
+  return i;
+}
+function textarea(val, onInput, rows){
+  const t = document.createElement('textarea'); t.value = val || '';
+  if (rows) t.rows = rows;
+  t.addEventListener('input', () => onInput(t.value));
+  return t;
+}
+/* HTML-enabled textarea for fields that allow <em> etc. */
+function htmlInput(val, onInput, rows){
+  const t = document.createElement('textarea'); t.value = val || '';
+  if (rows) t.rows = rows;
+  t.addEventListener('input', () => onInput(t.value));
+  return t;
+}
+function uploadField(currentVal, fallbackVal, onDone, currentFallbackChange){
+  const wrap = el('div','upload');
+  const thumb = el('div','upload-thumb');
+  if (currentVal && /^data:|^https?:/.test(currentVal)) {
+    thumb.innerHTML = '<img src="' + esc(currentVal) + '" alt="">';
+  } else {
+    thumb.innerHTML = ICONS.image;
+  }
+  const ctrl = el('div','upload-ctrl');
+  const lbl = el('label','upload-btn');
+  lbl.innerHTML = ICONS.image + ' Upload image/video';
+  const fi = document.createElement('input'); fi.type='file'; fi.accept='image/*,video/*';
+  fi.addEventListener('change', async () => {
+    const f = fi.files[0]; if (!f) return;
+    const dataUrl = await readFileAsDataURL(f);
+    onDone(dataUrl, f.type);
+    // update thumb
+    thumb.innerHTML = f.type.startsWith('video/') ? ICONS.video : '<img src="' + dataUrl + '" alt="">';
+  });
+  lbl.appendChild(fi);
+  const urlInput = document.createElement('input');
+  urlInput.type='text'; urlInput.placeholder='Or paste an image/video URL'; urlInput.className='upload-url';
+  urlInput.value = (currentVal && /^https?:/.test(currentVal)) ? currentVal : '';
+  urlInput.addEventListener('change', () => {
+    onDone(urlInput.value, null);
+    thumb.innerHTML = urlInput.value ? '<img src="'+esc(urlInput.value)+'" alt="">' : ICONS.image;
+  });
+  const clearBtn = el('button', 'upload-clear', 'Remove');
+  clearBtn.addEventListener('click', () => { onDone('', null); thumb.innerHTML = ICONS.image; urlInput.value = ''; });
+  // fallback colour
+  const fallbackInput = input('text', fallbackVal || '', v => { if (currentFallbackChange) currentFallbackChange(v); }, { placeholder: '#5a2a24' });
+  fallbackInput.style.marginTop = '6px';
+  fallbackInput.style.fontSize = '12px';
+  const fbLabel = el('div','hint','Fallback colour (#hex)');
+  ctrl.append(lbl, urlInput, clearBtn, fbLabel, fallbackInput);
+  wrap.append(thumb, ctrl);
+  return wrap;
+}
+function colorSwatch(currentVal, onDone){
+  const w = el('input'); w.type = 'color'; w.value = currentVal;
+  w.style.width = '44px'; w.style.height = '36px'; w.style.padding = '0'; w.style.border = '1px solid var(--c-hairline)'; w.style.borderRadius = '10px'; w.style.background = 'transparent';
+  w.addEventListener('input', () => onDone(w.value));
+  const hex = input('text', currentVal, v => onDone(v), { placeholder:'#B3261E' });
+  hex.style.maxWidth = '140px';
+  const wrap = el('div'); wrap.style.display = 'flex'; wrap.style.gap = '8px'; wrap.style.alignItems = 'center';
+  wrap.append(w, hex);
+  w.addEventListener('input', () => hex.value = w.value);
+  hex.addEventListener('input', () => { if (/^#[0-9a-fA-F]{6}$/.test(hex.value)) w.value = hex.value; });
+  return wrap;
+}
+
+/* ---- Section helpers ---- */
+function sectionHeader(title, desc){
+  const w = document.createElement('div'); w.style.marginBottom = 'var(--s-4)';
+  w.innerHTML = `<h3 class="admin-section-title">${esc(title)}</h3>${desc?`<p class="admin-section-desc">${esc(desc)}</p>`:''}`;
+  return w;
+}
+
+function bind(){ saveState(); renderAll(); }
+
+function listEditor({ items, renderItem, add, onReorder, labelHint }){
+  const wrap = el('div','admin-list');
+  let dragSrc = null;
+  function render(){
+    wrap.innerHTML = '';
+    items.forEach((it, idx) => {
+      const head = el('div','admin-item-head');
+      head.draggable = true;
+      head.innerHTML = `<span class="admin-drag" title="Drag to reorder">${ICONS.drag}</span>`;
+      const titleSpan = el('span','admin-item-title');
+      titleSpan.textContent = (typeof renderItem.title === 'function' ? renderItem.title(it) : renderItem.title) + ' #' + (idx+1);
+      head.appendChild(titleSpan);
+      const toggle = el('button','admin-item-toggle');
+      toggle.innerHTML = '<span class="chev">' + ICONS.down + '</span>';
+      head.appendChild(toggle);
+      const del = el('button','btn-danger');
+      del.innerHTML = ICONS.trash;
+      del.title = 'Delete item';
+      del.addEventListener('click', (e) => { e.stopPropagation();
+        if (confirm('Delete this item?')) { items.splice(idx,1); onReorder && onReorder(); buildPanel(); bind(); }
+      });
+      head.appendChild(del);
+      const item = el('div','admin-item');
+      item.appendChild(head);
+      const body = el('div','admin-item-body');
+      body.appendChild(renderItem.body(it, idx, () => { buildPanel(); }));
+      item.appendChild(body);
+      head.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-danger, .admin-drag')) return;
+        item.classList.toggle('open');
+        head.querySelector('.chev').innerHTML = item.classList.contains('open') ? ICONS.up : ICONS.down;
+      });
+      // drag & drop
+      head.addEventListener('dragstart', (e) => { dragSrc = idx; item.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+      head.addEventListener('dragend', () => { item.classList.remove('dragging'); $$('.admin-item', wrap).forEach(n => n.classList.remove('drag-over')); });
+      head.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+      head.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (dragSrc === null || dragSrc === idx) return;
+        const moved = items.splice(dragSrc, 1)[0];
+        items.splice(idx, 0, moved); dragSrc = null;
+        onReorder && onReorder(); render(); bind();
+      });
+      wrap.appendChild(item);
+    });
+  }
+  render();
+  const addBtn = el('button','btn-add');
+  addBtn.type = 'button';
+  addBtn.innerHTML = ICONS.plus + ' Add item';
+  addBtn.addEventListener('click', () => { add(items); buildPanel(); bind(); });
+  const container = el('div');
+  if (labelHint) container.appendChild(el('div','admin-section-desc', labelHint));
+  container.appendChild(wrap);
+  container.appendChild(addBtn);
+  return container;
+}
+
+/* =========================================================
+   TAB RENDERERS
+   ========================================================= */
+
+function renderBrandTab(s){
+  s.appendChild(sectionHeader('Brand & contact', 'These appear in the nav, footer, contact buttons and browser tab.'));
+  const b = state.brand;
+  s.appendChild(field('Brand name', input('text', b.name, v => { b.name = v; })));
+  s.appendChild(field('Tagline', input('text', b.tagline, v => { b.tagline = v; }), 'Sits under the logo (e.g. \u201cEst. 2017 · Palawan\u201d).'));
+  s.appendChild(field('Phone', input('tel', b.phone, v => { b.phone = v; }), 'Updates nav, location, footer and call buttons on save.'));
+  s.appendChild(field('Email', input('email', ((state.footer.cols.reduce((a,c)=>a.concat(c.links),[]).find(l => l.href && l.href.startsWith('mailto:')) || {}).label) || b.email || 'hello@jayceetrading.ph', v => {
+    state.footer.cols.forEach(c => c.links.forEach(l => { if (l.href && l.href.startsWith('mailto:')) { l.label = v; l.href = 'mailto:' + v; } }));
+    state.midCta.btnHref = 'mailto:' + v + '?subject=Order%20Enquiry';
+    b.email = v;
+  }), 'Updates footer mailto link and mid-CTA on save.'));
+  s.appendChild(field('"Order Online" button label', input('text', b.orderLabel, v => { b.orderLabel = v; })));
+  const save = el('button','btn-save','Save changes');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderThemeTab(s){
+  s.appendChild(sectionHeader('Theme', 'Colours and heading font update instantly across the site.'));
+  s.appendChild(field('Accent color (crimson)', colorSwatch(state.brand.accent, v => { state.brand.accent = v; document.documentElement.style.setProperty('--c-accent', v); document.documentElement.style.setProperty('--c-accent-dark', shade(v, -14)); })));
+  s.appendChild(field('"Order Online" green', colorSwatch(state.brand.green, v => { state.brand.green = v; document.documentElement.style.setProperty('--c-green', v); document.documentElement.style.setProperty('--c-green-dark', shade(v, -14)); })));
+
+  const fontRow = el('div','admin-field');
+  fontRow.innerHTML = '<label>Heading font</label>';
+  const sel = document.createElement('select');
+  sel.innerHTML = `<option value="intertight">Inter Tight — modern sans (recommended)</option><option value="instrument">Instrument Serif — editorial accent</option>`;
+  sel.value = state.brand.fontHead === 'instrument' ? 'instrument' : 'intertight';
+  sel.addEventListener('change', () => {
+    state.brand.fontHead = sel.value;
+    const stack = sel.value === 'instrument' ? '"Instrument Serif", Georgia, serif' : '"Inter Tight", "Inter", system-ui, sans-serif';
+    document.documentElement.style.setProperty('--f-serif', stack);
+    document.documentElement.style.setProperty('--f-display', stack);
+    document.documentElement.style.setProperty('--f-head-weight', sel.value === 'instrument' ? '400' : '500');
+  });
+  fontRow.appendChild(sel);
+  s.appendChild(fontRow);
+
+  const save = el('button','btn-save','Save theme');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderNavTab(s){
+  s.appendChild(sectionHeader('Navigation links', 'Add, remove, reorder and relabel menu items. Drag handles to reorder.'));
+  const add = (items) => items.push({ label: 'New link', href: '#' });
+  s.appendChild(listEditor({
+    items: state.nav,
+    add,
+    onReorder: () => {},
+    renderItem: {
+      title: (it) => it.label,
+      body: (it, idx, refresh) => {
+        const w = el('div');
+        w.appendChild(field('Label', input('text', it.label, v => { it.label = v; })));
+        w.appendChild(field('Link (href)', input('text', it.href, v => { it.href = v; }), 'Use #section-id or a full URL.'));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save navigation');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderHeroTab(s){
+  s.appendChild(sectionHeader('Hero section', 'The big section at the top. Italics are supported via <em>text</em> in the third line.'));
+  const h = state.hero;
+  s.appendChild(field('Eyebrow', input('text', h.eyebrow, v => h.eyebrow = v)));
+  s.appendChild(field('Line 1 (solid)', htmlInput(h.line1, v => h.line1 = v, 1), 'Plain text only (no <em>).'));
+  s.appendChild(field('Line 2 (solid)', htmlInput(h.line2, v => h.line2 = v, 1)));
+  s.appendChild(field('Line 3 (with optional italics)', htmlInput(h.line3, v => h.line3 = v, 1), 'Wrap words in <em>…</em> to italicize.'));
+  s.appendChild(field('Subtitle / lede', textarea(h.lede, v => h.lede = v, 3)));
+  const c1 = el('div','admin-field'); c1.innerHTML = '<label>Primary CTA</label>';
+  const c1r = el('div','row2');
+  c1r.appendChild(input('text', h.cta1Label, v => h.cta1Label = v, { placeholder: 'Label' }));
+  c1r.appendChild(input('text', h.cta1Href, v => h.cta1Href = v, { placeholder: '#products' }));
+  c1.appendChild(c1r); s.appendChild(c1);
+  const c2 = el('div','admin-field'); c2.innerHTML = '<label>Secondary CTA</label>';
+  const c2r = el('div','row2');
+  c2r.appendChild(input('text', h.cta2Label, v => h.cta2Label = v));
+  c2r.appendChild(input('text', h.cta2Href, v => h.cta2Href = v));
+  c2.appendChild(c2r); s.appendChild(c2);
+  s.appendChild(field('Footnote (bottom of copy)', input('text', h.footnote, v => h.footnote = v)));
+  s.appendChild(field('Social proof line', input('text', h.proof || 'Serving 200+ Palawan kitchens', v => h.proof = v)));
+  s.appendChild(field('Photo badge (top-right of image)', input('text', h.tag || 'Est. 2017 · Palawan', v => h.tag = v)));
+  s.appendChild(field('Glass card title', input('text', h.glassTitle || 'Cold chain, never broken', v => h.glassTitle = v)));
+  s.appendChild(field('Glass card subtitle', input('text', h.glassSub || '−18°C from arrival to your kitchen', v => h.glassSub = v)));
+  s.appendChild(field('Hero image / video', uploadField(h.bg, h.bgFallback, (dataUrl) => h.bg = dataUrl, (fb) => h.bgFallback = fb)));
+  const save = el('button','btn-save','Save hero');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderCatsTab(s){
+  s.appendChild(sectionHeader('Product categories', 'The small horizontal carousel. Drag to reorder.'));
+  const add = (items) => items.push({ title: 'New category', sub: 'Subtitle', kicker: 'Category', desc: 'Description.', cta: 'Browse', fallback: '#5a2a24', img: '', alt: '' });
+  s.appendChild(listEditor({
+    items: state.categories.items,
+    add,
+    renderItem: {
+      title: it => it.title,
+      body: (it, idx, refresh) => {
+        const w = el('div');
+        w.appendChild(field('Title', input('text', it.title, v => it.title = v)));
+        w.appendChild(field('Subtitle (under title)', input('text', it.sub, v => it.sub = v)));
+        w.appendChild(field('Kicker (back)', input('text', it.kicker, v => it.kicker = v)));
+        w.appendChild(field('Back description', textarea(it.desc, v => it.desc = v, 3)));
+        w.appendChild(field('Back CTA label', input('text', it.cta, v => it.cta = v)));
+        w.appendChild(field('CTA link', input('text', it.ctaHref || '#order', v => it.ctaHref = v)));
+        w.appendChild(field('Alt text', input('text', it.alt, v => it.alt = v)));
+        w.appendChild(field('Image / video', uploadField(it.img, it.fallback, d => it.img = d, fb => it.fallback = fb)));
+        return w;
+      }
+    }
+  }));
+  s.appendChild(field('Section eyebrow', input('text', state.categories.eyebrow, v => state.categories.eyebrow = v)));
+  s.appendChild(field('Section title (HTML allowed)', htmlInput(state.categories.title, v => state.categories.title = v, 1)));
+  s.appendChild(field('"View all" label', input('text', state.categories.viewAllLabel, v => state.categories.viewAllLabel = v)));
+  const save = el('button','btn-save','Save categories');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderFeatTab(s){
+  s.appendChild(sectionHeader('Featured cards', 'The three large flip cards. Drag to reorder.'));
+  const add = items => items.push({ kicker:'New', title:'New featured', cta:'Explore', desc:'', bullets:[], btn:'Explore', fallback:'#5a2a24', img:'' });
+  s.appendChild(listEditor({
+    items: state.featured,
+    add,
+    renderItem: {
+      title: it => it.title,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Eyebrow / kicker', input('text', it.kicker, v => it.kicker = v)));
+        w.appendChild(field('Title', input('text', it.title, v => it.title = v)));
+        w.appendChild(field('Front CTA text', input('text', it.cta, v => it.cta = v)));
+        w.appendChild(field('Back description', textarea(it.desc, v => it.desc = v, 3)));
+        w.appendChild(field('Back button label', input('text', it.btn, v => it.btn = v)));
+        const bLab = el('label'); bLab.textContent = 'Bullet points (one per line)'; bLab.style.cssText='display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink-2);margin:20px 0 8px';
+        w.appendChild(bLab);
+        const bTa = textarea((it.bullets || []).join('\n'), v => it.bullets = v.split('\n').map(x => x.trim()).filter(Boolean), 4);
+        w.appendChild(bTa);
+        w.appendChild(field('Image', uploadField(it.img, it.fallback, d => it.img = d, fb => it.fallback = fb)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save featured');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderLogosTab(s){
+  s.appendChild(sectionHeader('Trusted-by logos', 'Simple brand-name list. Colour is used for the icon and name.'));
+  s.appendChild(field('Section eyebrow', input('text', state.trusted.eyebrow, v => state.trusted.eyebrow = v)));
+  s.appendChild(field('Section title (HTML allowed)', htmlInput(state.trusted.title, v => state.trusted.title = v, 1)));
+  const add = items => items.push({ name:'New client', color:'#B3261E' });
+  s.appendChild(listEditor({
+    items: state.trusted.items,
+    add,
+    renderItem: {
+      title: it => it.name,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Name', input('text', it.name, v => it.name = v)));
+        w.appendChild(field('Brand colour', colorSwatch(it.color, v => it.color = v)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save logos');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderRowsTab(s){
+  s.appendChild(sectionHeader('Three stories', 'Alternating image/text rows. Toggle reverse to flip image side.'));
+  s.appendChild(field('Section eyebrow', input('text', state.goodfood.eyebrow, v => state.goodfood.eyebrow = v)));
+  s.appendChild(field('Section title (HTML)', htmlInput(state.goodfood.title, v => state.goodfood.title = v, 1)));
+  const add = items => items.push({ eyebrow:'New', title:'New title', desc:'Description.', linkLabel:'Learn more', linkHref:'#', fallback:'#6b4a3a', img:'', reverse:false });
+  s.appendChild(listEditor({
+    items: state.goodfood.rows,
+    add,
+    renderItem: {
+      title: it => it.eyebrow,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Eyebrow', input('text', it.eyebrow, v => it.eyebrow = v)));
+        w.appendChild(field('Headline (HTML, use <em> for italics)', htmlInput(it.title, v => it.title = v, 2)));
+        w.appendChild(field('Body', textarea(it.desc, v => it.desc = v, 3)));
+        w.appendChild(field('Link label', input('text', it.linkLabel, v => it.linkLabel = v)));
+        w.appendChild(field('Link href', input('text', it.linkHref, v => it.linkHref = v)));
+        const revLabel = el('label'); revLabel.style.cssText='display:flex;align-items:center;gap:10px;margin:10px 0;cursor:pointer;font-size:var(--t-sm);font-weight:500';
+        const cb = document.createElement('input'); cb.type='checkbox'; cb.checked = !!it.reverse;
+        cb.addEventListener('change', () => it.reverse = cb.checked);
+        revLabel.append(cb, document.createTextNode(' Reverse layout (image on right)'));
+        w.appendChild(revLabel);
+        w.appendChild(field('Image', uploadField(it.img, it.fallback, d => it.img = d, fb => it.fallback = fb)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save rows');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderEssTab(s){
+  s.appendChild(sectionHeader('Everyday essentials', 'Three smaller product cards below the story rows.'));
+  s.appendChild(field('Eyebrow', input('text', state.essentials.eyebrow, v => state.essentials.eyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(state.essentials.title, v => state.essentials.title = v, 1)));
+  s.appendChild(field('Link label', input('text', state.essentials.linkLabel, v => state.essentials.linkLabel = v)));
+  s.appendChild(field('Link href', input('text', state.essentials.linkHref, v => state.essentials.linkHref = v)));
+  const add = items => items.push({ title:'New', desc:'', fallback:'#8c3b32', img:'', href:'#order' });
+  s.appendChild(listEditor({
+    items: state.essentials.items,
+    add,
+    renderItem: {
+      title: it => it.title,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Title', input('text', it.title, v => it.title = v)));
+        w.appendChild(field('Description', textarea(it.desc, v => it.desc = v, 2)));
+        w.appendChild(field('Link href', input('text', it.href, v => it.href = v)));
+        w.appendChild(field('Image', uploadField(it.img, it.fallback, d => it.img = d, fb => it.fallback = fb)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save essentials');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderStoryTab(s){
+  s.appendChild(sectionHeader('Our story', 'The 2017 section with the four service flip cards.'));
+  const st = state.story;
+  s.appendChild(field('Year eyebrow', input('text', st.yearEyebrow, v => st.yearEyebrow = v)));
+  s.appendChild(field('Year (number)', input('number', st.year, v => st.year = parseInt(v,10) || 2017)));
+  s.appendChild(field('Year caption', textarea(st.yearCap, v => st.yearCap = v, 2)));
+  s.appendChild(field('Copy eyebrow', input('text', st.copyEyebrow, v => st.copyEyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(st.title, v => st.title = v, 2)));
+  const pLab = el('label'); pLab.textContent='Paragraphs (one per block)'; pLab.style.cssText='display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--c-ink-2);margin:16px 0 8px';
+  s.appendChild(pLab);
+  const pTa = textarea(st.paragraphs.join('\n\n'), v => st.paragraphs = v.split(/\n{2,}/).map(x => x.trim()).filter(Boolean), 8);
+  s.appendChild(pTa);
+  s.appendChild(field('Tagline', input('text', st.tagline, v => st.tagline = v)));
+
+  s.appendChild(el('h4', 'admin-section-title', 'Service cards'));
+  s.appendChild(el('p', 'admin-section-desc', 'Four flip cards below the story. Each has a front title/line and a back description.'));
+  const add = items => items.push({ title:'New', front:'Front line.', backKicker:'', backDesc:'Back description.', linkLabel:'Learn more' });
+  s.appendChild(listEditor({
+    items: st.services,
+    add,
+    renderItem: {
+      title: it => it.title,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Title', input('text', it.title, v => it.title = v)));
+        w.appendChild(field('Front line', input('text', it.front, v => it.front = v)));
+        w.appendChild(field('Back kicker', input('text', it.backKicker, v => it.backKicker = v)));
+        w.appendChild(field('Back description', textarea(it.backDesc, v => it.backDesc = v, 3)));
+        w.appendChild(field('Back link label', input('text', it.linkLabel, v => it.linkLabel = v)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save story');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderLocTab(s){
+  s.appendChild(sectionHeader('Location', 'The moved section with the map card, stats and hours.'));
+  const L = state.location;
+  s.appendChild(field('Eyebrow', input('text', L.eyebrow, v => L.eyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(L.title, v => L.title = v, 2)));
+  s.appendChild(field('Intro', textarea(L.intro, v => L.intro = v, 2)));
+  s.appendChild(field('Business name', input('text', L.name, v => L.name = v)));
+  s.appendChild(field('Address line 1', input('text', L.addressLine1, v => L.addressLine1 = v)));
+  s.appendChild(field('Address line 2', input('text', L.addressLine2, v => L.addressLine2 = v)));
+  s.appendChild(field('Directions button label', input('text', L.dirLabel, v => L.dirLabel = v)));
+  s.appendChild(field('Map card kicker', input('text', L.mapKicker, v => L.mapKicker = v)));
+  s.appendChild(field('Map card title', input('text', L.mapTitle, v => L.mapTitle = v)));
+  s.appendChild(field('Map card description', textarea(L.mapDesc, v => L.mapDesc = v, 2)));
+  s.appendChild(field('Map card button label', input('text', L.mapBtnLabel, v => L.mapBtnLabel = v)));
+  s.appendChild(field('Map label (pill over map)', input('text', L.mapLabel || 'JayCee Trading · B.M. Road', v => L.mapLabel = v)));
+  s.appendChild(field('Google Maps embed URL', textarea(L.mapEmbed || '', v => L.mapEmbed = v, 4), 'Paste the full URL from Google Maps "Embed a map" share, e.g. https://www.google.com/maps/embed?pb=…'));
+  s.appendChild(field('Directions URL (open in app)', input('url', L.dirUrl, v => L.dirUrl = v), 'Short share link or https://maps.app.goo.gl/... link.'));
+
+  s.appendChild(el('h4','admin-section-title','Travel-time stats'));
+  const addStat = items => items.push({ n:5, unit:'min', label:'from somewhere' });
+  s.appendChild(listEditor({
+    items: L.stats, add: addStat,
+    renderItem: {
+      title: it => it.n + ' ' + it.unit + ' · ' + it.label,
+      body: (it) => {
+        const w = el('div');
+        const r = el('div','row2');
+        r.appendChild(field('Number', input('number', it.n, v => it.n = parseInt(v,10) || 0)));
+        r.appendChild(field('Unit', input('text', it.unit, v => it.unit = v)));
+        w.appendChild(r);
+        w.appendChild(field('Label', input('text', it.label, v => it.label = v)));
+        return w;
+      }
+    }
+  }));
+
+  s.appendChild(el('h4','admin-section-title','Hours'));
+  const addHour = items => items.push({ dt: 'New section', dd: 'Hours text' });
+  s.appendChild(listEditor({
+    items: L.hours, add: addHour,
+    renderItem: {
+      title: it => it.dt,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Day / section', input('text', it.dt, v => it.dt = v)));
+        w.appendChild(field('Hours', input('text', it.dd, v => it.dd = v)));
+        return w;
+      }
+    }
+  }));
+
+  const save = el('button','btn-save','Save location');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderFaqTab(s){
+  s.appendChild(sectionHeader('Frequently asked questions', 'Answers type out when a visitor opens a question.'));
+  s.appendChild(field('Eyebrow', input('text', state.faq.eyebrow, v => state.faq.eyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(state.faq.title, v => state.faq.title = v, 1)));
+  s.appendChild(field('Intro text', textarea(state.faq.intro, v => state.faq.intro = v, 2)));
+  const add = items => items.push({ q: 'New question?', a: 'New answer.' });
+  s.appendChild(listEditor({
+    items: state.faq.items, add,
+    renderItem: {
+      title: it => it.q,
+      body: (it) => {
+        const w = el('div');
+        w.appendChild(field('Question', input('text', it.q, v => it.q = v)));
+        w.appendChild(field('Answer', textarea(it.a, v => it.a = v, 4)));
+        return w;
+      }
+    }
+  }));
+  const save = el('button','btn-save','Save FAQ');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderMidTab(s){
+  s.appendChild(sectionHeader('Mid-page CTA', 'The "Looking for something specific?" band.'));
+  const m = state.midCta;
+  s.appendChild(field('Eyebrow', input('text', m.eyebrow, v => m.eyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(m.title, v => m.title = v, 1)));
+  s.appendChild(field('Description', textarea(m.desc, v => m.desc = v, 2)));
+  s.appendChild(field('Button label', input('text', m.btnLabel, v => m.btnLabel = v)));
+  s.appendChild(field('Button href (mailto: or URL)', input('text', m.btnHref, v => m.btnHref = v)));
+  const save = el('button','btn-save','Save CTA');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderFinalTab(s){
+  s.appendChild(sectionHeader('Final CTA', 'The dark image band above the footer.'));
+  const f = state.finalCta;
+  s.appendChild(field('Eyebrow', input('text', f.eyebrow, v => f.eyebrow = v)));
+  s.appendChild(field('Title (HTML)', htmlInput(f.title, v => f.title = v, 2)));
+  s.appendChild(field('Primary button label', input('text', f.cta1Label, v => f.cta1Label = v)));
+  s.appendChild(field('Primary button href', input('text', f.cta1Href, v => f.cta1Href = v)));
+  s.appendChild(field('Secondary button label', input('text', f.cta2Label, v => f.cta2Label = v)));
+  s.appendChild(field('Secondary button href', input('text', f.cta2Href, v => f.cta2Href = v)));
+  s.appendChild(field('Background image / video', uploadField(f.bg, f.bgFallback, d => f.bg = d, fb => f.bgFallback = fb)));
+  const save = el('button','btn-save','Save final CTA');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+function renderFooterTab(s){
+  s.appendChild(sectionHeader('Footer', 'Brand paragraph and columns of links. Add or remove columns as needed.'));
+  s.appendChild(field('Brand paragraph', textarea(state.footer.brandText, v => state.footer.brandText = v, 3)));
+  s.appendChild(field('Copyright line', input('text', state.footer.copy, v => state.footer.copy = v), 'Use {year} to auto-insert the current year.'));
+  s.appendChild(field('Bottom-right line', input('text', state.footer.loc, v => state.footer.loc = v)));
+
+  const addCol = items => items.push({ title: 'New column', links: [{ label: 'Link', href: '#' }] });
+  s.appendChild(listEditor({
+    items: state.footer.cols, add: addCol,
+    renderItem: {
+      title: it => it.title,
+      body: (col) => {
+        const w = el('div');
+        w.appendChild(field('Column title', input('text', col.title, v => col.title = v)));
+        w.appendChild(el('div','hint','Links for this column (one per line, use label|url format, or just label for muted/non-link items).'));
+        const initial = col.links.map(l => (l.muted ? '!! ' : '') + l.label + (l.href ? '|' + l.href : '')).join('\n');
+        const ta = textarea(initial, v => {
+          col.links = v.split('\n').map(line => {
+            line = line.trim(); if (!line) return null;
+            const muted = line.startsWith('!! '); if (muted) line = line.slice(3);
+            const [label, href] = line.split('|').map(x => (x||'').trim());
+            return { label, href: href || '#', muted };
+          }).filter(Boolean);
+        }, 5);
+        w.appendChild(ta);
+        return w;
+      }
+    }
+  }));
+
+  const save = el('button','btn-save','Save footer');
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+}
+
+/* =========================================================
+   LOGO MANAGER TAB
+   Upload → automatic checks → previews → Approve & publish
+   ========================================================= */
+let pendingLogo = null; // session-only until approved (never shown on the live site)
+const UPLOAD_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>';
+
+function loadImg(src){
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('This image could not be opened. Try exporting it again.')); i.src = src; });
+}
+
+/* Reads any logo file, normalises SVG, auto-optimises huge rasters and inspects transparency */
+async function readLogoFile(file){
+  const name = file.name || 'logo';
+  let mime = (file.type || '').toLowerCase();
+  const isSvg = /svg/.test(mime) || /\.svg$/i.test(name);
+  let src, w = 0, h = 0;
+
+  if (isSvg){
+    const text = await file.text();
+    if (!/<svg[\s>]/i.test(text)) throw new Error('This SVG file looks invalid.');
+    const vb = text.match(/viewBox\s*=\s*["']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+    if (vb){ w = parseFloat(vb[1]); h = parseFloat(vb[2]); }
+    else {
+      const mw = text.match(/<svg[^>]*\swidth\s*=\s*["']([\d.]+)/i), mh = text.match(/<svg[^>]*\sheight\s*=\s*["']([\d.]+)/i);
+      if (mw && mh){ w = +mw[1]; h = +mh[1]; }
+    }
+    src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(text)));
+    mime = 'image/svg+xml';
+  } else {
+    src = await readFileAsDataURL(file);
+  }
+
+  const img = await loadImg(src);
+  if (!isSvg || !w || !h){ w = img.naturalWidth || w; h = img.naturalHeight || h; }
+  if (!w || !h){ w = w || 300; h = h || 100; }
+
+  // Auto-optimise very large raster files for fast mobile loading
+  let optimized = false, outName = name, size = file.size;
+  if (!isSvg && w > 1600){
+    const c = document.createElement('canvas');
+    c.width = 1600; c.height = Math.round(h * (1600 / w));
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    const isJpg = /jpe?g/.test(mime);
+    src = c.toDataURL(isJpg ? 'image/jpeg' : 'image/png', .9);
+    if (!isJpg){ mime = 'image/png'; outName = name.replace(/\.\w+$/, '') + '.png'; }
+    w = c.width; h = c.height; optimized = true;
+    size = Math.round((src.length - src.indexOf(',') - 1) * 0.75);
+  }
+
+  // Inspect pixels: transparency, solid white box, all-white artwork
+  const a = { isSvg, w: Math.round(w), h: Math.round(h), ratio: w / h, transparent: null, whiteBg: false, lightLogo: false, size, mime };
+  try {
+    const scale = Math.min(1, 480 / Math.max(w, h));
+    const sw = Math.max(1, Math.round(w * scale)), sh = Math.max(1, Math.round(h * scale));
+    const c = document.createElement('canvas'); c.width = sw; c.height = sh;
+    const ctx = c.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(img, 0, 0, sw, sh);
+    const d = ctx.getImageData(0, 0, sw, sh).data;
+    let clear = 0, lum = 0, cnt = 0;
+    for (let i = 0; i < d.length; i += 4){
+      if (d[i + 3] < 245) clear++;
+      if (d[i + 3] > 200){ lum += 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]; cnt++; }
+    }
+    a.transparent = clear / (sw * sh) > 0.01;
+    const px = (x, y) => { const k = (y * sw + x) * 4; return [d[k], d[k + 1], d[k + 2], d[k + 3]]; };
+    a.whiteBg = [px(0, 0), px(sw - 1, 0), px(0, sh - 1), px(sw - 1, sh - 1)].every(p => p[3] > 245 && p[0] > 235 && p[1] > 235 && p[2] > 235);
+    a.lightLogo = a.transparent && cnt > 0 && (lum / cnt) > 228;
+  } catch(e){ /* leave as "not verified" */ }
+
+  return { src, mime, name: outName, size, a, optimized };
+}
+
+/* Plain-language quality checks shown to the client */
+function logoChecks(a){
+  const out = [], m = (a.mime || '').toLowerCase();
+  if (a.isSvg) out.push({ l:'pass', t:'SVG vector', x:'Perfectly sharp on every screen and at every size. Best choice.' });
+  else if (/png|webp|avif/.test(m)) out.push({ l:'pass', t:(m.split('/')[1] || 'PNG').toUpperCase() + ' image', x:'Supports transparency. Great for logos.' });
+  else if (/jpe?g/.test(m)) out.push({ l:'fail', t:'JPG image', x:'JPG cannot be transparent, so it shows a solid box behind the logo. Please send PNG or SVG.' });
+  else out.push({ l:'warn', t:(m.replace('image/','') || 'Unknown').toUpperCase() + ' image', x:'This format works, but PNG or SVG is recommended.' });
+
+  if (a.transparent === true) out.push({ l:'pass', t:'Transparent background', x:'Blends cleanly into the header, footer and hero.' });
+  else if (a.transparent === false) out.push({ l:'fail', t:'No transparency detected', x: a.whiteBg ? 'The logo sits on a solid white box. Export it again with a transparent background.' : 'The logo has a solid background. Export it again with a transparent background.' });
+  else out.push({ l:'warn', t:'Transparency not verified', x:'This file could not be inspected. Check the Dark preview below for a visible box.' });
+
+  if (a.isSvg) out.push({ l:'pass', t:'Resolution', x:'Vector, so there is no resolution limit.' });
+  else if (a.w >= 800 || a.h >= 400) out.push({ l:'pass', t:`Resolution ${a.w}×${a.h}px`, x:'Crisp on Retina and high-density screens.' });
+  else if (a.w >= 400) out.push({ l:'warn', t:`Resolution ${a.w}×${a.h}px`, x:'Acceptable, but may look soft on Retina screens. 1000px+ wide is recommended.' });
+  else out.push({ l:'fail', t:`Resolution ${a.w}×${a.h}px`, x:'Too small and will look blurry. Send at least 1000px wide, or an SVG.' });
+
+  if (a.ratio){
+    const r = a.ratio.toFixed(1);
+    if (a.ratio >= 2 && a.ratio <= 7) out.push({ l:'pass', t:`Horizontal shape (${r}:1)`, x:'Ideal for the header on desktop, tablet and mobile.' });
+    else if (a.ratio > 7) out.push({ l:'warn', t:`Very wide (${r}:1)`, x:'Width is capped on mobile, so it may look small. Consider a more compact version.' });
+    else if (a.ratio >= 1.2) out.push({ l:'warn', t:`Compact shape (${r}:1)`, x:'Works, but appears smaller in the header. A horizontal lockup reads better.' });
+    else out.push({ l:'warn', t:`Square / stacked mark (${r}:1)`, x:'“Show brand name next to logo” will be switched on so the business name stays readable.' });
+  }
+
+  const kb = Math.max(1, Math.round(a.size / 1024));
+  if (kb <= 300) out.push({ l:'pass', t:`File size ${kb} KB`, x:'Lightweight, so it loads instantly on mobile data.' });
+  else if (kb <= 1200) out.push({ l:'warn', t:`File size ${kb} KB`, x:'A little heavy. Under 300 KB is ideal for fast mobile loading.' });
+  else out.push({ l:'fail', t:`File size ${kb} KB`, x:'Too large for fast loading and browser storage. Please compress it or send an SVG.' });
+
+  if (a.lightLogo) out.push({ l:'warn', t:'Very light artwork', x:'Mostly white logos disappear on the white header and footer. Use a dark or full-colour version.' });
+  return out;
+}
+
+/* Built-in guide so the client knows exactly what to send */
+function logoHelp(){
+  const d = document.createElement('details');
+  d.className = 'lp-help';
+  d.innerHTML = `
+    <summary>Help: preparing a logo that looks right on every device</summary>
+    <div class="lp-help-body">
+      <h5>1 · Best file types</h5>
+      <ul>
+        <li><b>SVG</b> is the first choice. It's vector, razor-sharp on every screen, and tiny.</li>
+        <li><b>Transparent PNG</b> is the second choice. Export at 2× or 3× (at least 1000px wide).</li>
+        <li><b>WebP / AVIF</b> are fine if the background is transparent.</li>
+        <li><b>Avoid JPG</b>. It can't be transparent and will show a white box.</li>
+      </ul>
+      <h5>2 · Transparent background</h5>
+      <ul>
+        <li>Remove the background completely, with no white or coloured box.</li>
+        <li>Check the <b>Dark</b> preview: if you can see a rectangle around the logo, the background isn't transparent.</li>
+      </ul>
+      <h5>3 · Shape &amp; trimming</h5>
+      <ul>
+        <li>A <b>horizontal lockup</b> (icon + name side by side, about 3:1 to 5:1) reads best in a header.</li>
+        <li><b>Trim empty space</b> around the artwork. Extra transparent padding makes the logo look smaller.</li>
+        <li>Square or stacked logos work too. Turn on “Show brand name next to logo”.</li>
+      </ul>
+      <h5>4 · Colour &amp; contrast</h5>
+      <ul>
+        <li>The header, footer and hero are white, so use a dark or full-colour version.</li>
+        <li>An all-white logo will be invisible on white.</li>
+      </ul>
+      <h5>5 · Recommended display heights</h5>
+      <table class="lp-table">
+        <thead><tr><th>Placement</th><th>Device</th><th>Height</th></tr></thead>
+        <tbody>
+          <tr><td>Header</td><td>Desktop &amp; tablet</td><td>32–44px</td></tr>
+          <tr><td>Header</td><td>Mobile</td><td>26–34px</td></tr>
+          <tr><td>Footer</td><td>All devices</td><td>36–48px</td></tr>
+          <tr><td>Hero</td><td>All devices</td><td>64–96px (72% on mobile)</td></tr>
+        </tbody>
+      </table>
+      <h5>6 · Approval workflow</h5>
+      <ul>
+        <li>Upload → review the automatic checks and previews → <b>Approve &amp; publish</b>.</li>
+        <li>Nothing changes on the live site until you approve.</li>
+        <li>Files wider than 1600px are optimised automatically for fast mobile loading.</li>
+      </ul>
+    </div>`;
+  return d;
+}
+
+function rangeField(label, val, min, max, onInput){
+  const w = el('div', 'admin-field');
+  w.innerHTML = `<label>${esc(label)} <output>${val}px</output></label>`;
+  const r = document.createElement('input');
+  r.type = 'range'; r.min = min; r.max = max; r.step = 1; r.value = val; r.className = 'admin-range';
+  r.setAttribute('aria-label', label);
+  r.addEventListener('input', () => { w.querySelector('output').textContent = r.value + 'px'; onInput(+r.value); });
+  w.appendChild(r);
+  return w;
+}
+function toggleField(title, help, checked, onChange){
+  const lab = el('label', 'lp-toggle');
+  const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!checked;
+  cb.addEventListener('change', () => onChange(cb.checked));
+  const txt = el('span', '', `${esc(title)}<small>${esc(help)}</small>`);
+  lab.append(cb, txt);
+  return lab;
+}
+
+function renderLogoTab(s){
+  const L = ensureLogoState();
+  s.appendChild(sectionHeader('Official logo', 'Upload, preview and approve the logo used in the header, footer and (optionally) the hero. Nothing goes live until you approve it.'));
+  s.appendChild(logoHelp());
+
+  const status = el('div', 'lp-status');
+  const drop = el('label', 'lp-drop');
+  drop.innerHTML = UPLOAD_SVG + '<b>Upload logo</b><span>SVG or transparent PNG recommended · WebP, AVIF, GIF and JPG also accepted · drag &amp; drop or tap to browse</span>';
+  const fi = document.createElement('input');
+  fi.type = 'file';
+  fi.accept = 'image/svg+xml,image/png,image/webp,image/avif,image/gif,image/jpeg,.svg,.png,.webp,.avif,.gif,.jpg,.jpeg';
+  drop.appendChild(fi);
+  const meta = el('p', 'lp-meta');
+  const checksBox = el('div', 'lp-checks');
+  const stage = el('div', 'lp-stage');
+  const devices = el('div', 'lp-devices');
+  const actions = el('div', 'lp-actions');
+
+  s.append(status, drop, meta, checksBox);
+  s.appendChild(el('h4', 'admin-section-title', 'Preview'));
+  s.appendChild(el('p', 'admin-section-desc', 'Check the logo on light, dark and transparent backgrounds, then in the real header, footer and hero on each device.'));
+  s.append(stage, devices, actions);
+
+  s.appendChild(el('h4', 'admin-section-title', 'Display size'));
+  s.appendChild(el('p', 'admin-section-desc', 'Height in pixels; width scales automatically. The previews and live site update instantly.'));
+  s.appendChild(rangeField('Header · desktop & tablet', L.headerH, 20, 60, v => { L.headerH = v; applyLogoVars(); }));
+  s.appendChild(rangeField('Header · mobile', L.headerHM, 18, 48, v => { L.headerHM = v; applyLogoVars(); }));
+  s.appendChild(rangeField('Footer', L.footerH, 20, 80, v => { L.footerH = v; applyLogoVars(); }));
+  s.appendChild(rangeField('Hero', L.heroH, 40, 160, v => { L.heroH = v; applyLogoVars(); }));
+
+  s.appendChild(el('h4', 'admin-section-title', 'Placement'));
+  s.appendChild(toggleField('Show brand name next to logo', 'Turn on for icon-only or square logos. Leave off if the logo already includes the business name.', L.showWordmark, v => { L.showWordmark = v; renderNav(); renderFooter(); refresh(); }));
+  s.appendChild(toggleField('Show logo in the hero', 'Displays the logo above the hero headline. Useful for launches and brand campaigns.', L.heroShow, v => { L.heroShow = v; renderHero(); refresh(); }));
+  s.appendChild(toggleField('Use logo as browser tab icon (favicon)', 'Works best with a square mark.', L.favicon, v => { L.favicon = v; applyFavicon(); }));
+
+  const save = el('button', 'btn-save', 'Save logo settings');
+  save.type = 'button';
+  save.style.marginTop = '8px';
+  save.addEventListener('click', () => { bind(); flashSaved(save); });
+  s.appendChild(save);
+
+  function currentSrc(){ return pendingLogo ? pendingLogo.src : (hasLiveLogo() ? L.src : ''); }
+
+  function refresh(){
+    const src = currentSrc() ? esc(currentSrc()) : '';
+
+    // Status banner
+    if (pendingLogo){ status.className = 'lp-status pending'; status.innerHTML = '<i></i>New upload, previewing only. Approve to publish it to the live site.'; }
+    else if (hasLiveLogo()){ status.className = 'lp-status live'; status.innerHTML = '<i></i>Live logo' + (L.approvedAt ? ' · approved ' + new Date(L.approvedAt).toLocaleDateString() : ''); }
+    else { status.className = 'lp-status none'; status.innerHTML = '<i></i>No logo uploaded yet. The site shows the default mark and brand name.'; }
+
+    // File meta + checks
+    const info = pendingLogo || (hasLiveLogo() ? { name: L.name, mime: L.mime, size: L.size, a: L.analysis } : null);
+    meta.hidden = !info;
+    meta.textContent = info ? [
+      info.name || 'logo',
+      (info.mime || '').replace('image/', '').replace('+xml', '').toUpperCase(),
+      Math.max(1, Math.round((info.size || 0) / 1024)) + ' KB',
+      info.a && info.a.w ? info.a.w + '×' + info.a.h + (info.a.isSvg ? ' (vector)' : 'px') : '',
+      pendingLogo && pendingLogo.optimized ? 'auto-optimised' : ''
+    ].filter(Boolean).join(' · ') : '';
+    checksBox.innerHTML = info && info.a ? logoChecks(info.a).map(c =>
+      `<div class="lp-check ${c.l}"><span class="ico" aria-hidden="true">${c.l === 'pass' ? '✓' : c.l === 'warn' ? '!' : '×'}</span><div><b>${esc(c.t)}</b><span>${esc(c.x)}</span></div></div>`
+    ).join('') : '';
+
+    // Background swatches
+    stage.innerHTML = src
+      ? ['light', 'dark', 'checker'].map(k => `<div class="lp-swatch ${k}"><img src="${src}" alt=""><em>${k === 'checker' ? 'Transparent' : k}</em></div>`).join('')
+      : `<div class="lp-swatch checker" style="grid-column:1/-1"><em>Upload a logo to preview it here</em></div>`;
+
+    // Device mockups (heights use the same live CSS variables as the site)
+    const name = esc(state.brand.name);
+    const mark = (hVar, maxW) => src
+      ? `<span class="lp-mark"><img src="${src}" alt="" style="height:var(${hVar});max-width:${maxW}px">${L.showWordmark ? `<span class="lp-word">${name}</span>` : ''}</span>`
+      : `<span class="lp-mark"><span class="lp-default" aria-hidden="true"></span><span class="lp-word">${name}</span></span>`;
+    devices.innerHTML = `
+      <div class="lp-device"><div class="lp-device-label"><span>Desktop · header</span><span>≥1025px</span></div>
+        <div class="lp-bar" style="height:72px">${mark('--logo-h-header', 240)}<span class="lp-links"><i></i><i></i><i></i><i></i></span><span class="lp-cta"></span></div></div>
+      <div class="lp-device lp-tablet"><div class="lp-device-label"><span>Tablet · header</span><span>769–1024px</span></div>
+        <div class="lp-bar" style="height:72px">${mark('--logo-h-header', 220)}<span class="lp-links"><i></i><i></i><i></i></span></div></div>
+      <div class="lp-device lp-phone"><div class="lp-device-label"><span>Mobile · header</span><span>≤768px</span></div>
+        <div class="lp-bar" style="height:60px">${mark('--logo-h-header-m', 190)}<span class="lp-burger" aria-hidden="true"></span></div></div>
+      <div class="lp-device"><div class="lp-device-label"><span>Footer</span><span>All devices</span></div>
+        <div class="lp-foot-mock">${src ? `<img src="${src}" alt="" style="height:var(--logo-h-footer);max-width:260px">` : mark('--logo-h-footer', 260)}<i></i><i style="width:46%"></i></div></div>
+      <div class="lp-device"><div class="lp-device-label"><span>Hero</span><span>${L.heroShow ? 'On' : 'Off'}</span></div>
+        <div class="lp-hero-mock">${src && L.heroShow ? `<img src="${src}" alt="" style="height:var(--logo-h-hero);max-width:320px">` : '<em>Hero logo is off. Turn it on under Placement.</em>'}<i></i><i style="width:60%"></i></div></div>`;
+
+    // Actions
+    actions.innerHTML = '';
+    if (pendingLogo){
+      const ok = el('button', 'btn-save', 'Approve & publish'); ok.type = 'button'; ok.addEventListener('click', approve);
+      const no = el('button', 'btn-sec', 'Discard upload'); no.type = 'button'; no.addEventListener('click', () => { pendingLogo = null; refresh(); });
+      actions.append(ok, no);
+    }
+    if (hasLiveLogo()){
+      const dl = document.createElement('a');
+      dl.className = 'btn-sec'; dl.href = L.src; dl.download = L.name || 'official-logo'; dl.textContent = 'Download live logo';
+      const rm = el('button', 'btn-dan', 'Remove logo'); rm.type = 'button';
+      rm.addEventListener('click', () => {
+        if (!confirm('Remove the live logo and return to the default mark?')) return;
+        Object.assign(L, { src:'', mime:'', name:'', size:0, analysis:null, approved:false, approvedAt:0 });
+        bind(); applyFavicon(); refresh(); toast('Logo removed');
+      });
+      actions.append(dl, rm);
+    }
+    actions.hidden = !actions.children.length;
+  }
+
+  function approve(){
+    if (!pendingLogo) return;
+    const fails = logoChecks(pendingLogo.a).filter(c => c.l === 'fail');
+    if (fails.length && !confirm('This logo has ' + fails.length + ' issue(s):\n\n• ' + fails.map(f => f.t).join('\n• ') + '\n\nPublish it anyway?')) return;
+    Object.assign(L, { src: pendingLogo.src, mime: pendingLogo.mime, name: pendingLogo.name, size: pendingLogo.size, analysis: pendingLogo.a, approved: true, approvedAt: Date.now() });
+    if (pendingLogo.a.ratio && pendingLogo.a.ratio < 1.2) L.showWordmark = true;
+    pendingLogo = null;
+    bind(); applyFavicon();
+    buildPanel();
+    toast('Logo approved and live in the header and footer');
+  }
+
+  async function handleFile(file){
+    if (!file) return;
+    if (!/^image\//.test(file.type) && !/\.(svg|png|webp|avif|gif|jpe?g)$/i.test(file.name)){ toast('Please upload an image file (SVG, PNG, WebP, JPG…)', true); return; }
+    if (file.size > 8 * 1024 * 1024){ toast('File is over 8 MB. Please compress it first.', true); return; }
+    drop.classList.add('is-busy');
+    try {
+      pendingLogo = await readLogoFile(file);
+      refresh();
+      toast('Logo loaded. Review the checks and preview, then approve.');
+    } catch(err){
+      toast(err.message || 'Could not read that file', true);
+    } finally {
+      drop.classList.remove('is-busy');
+      fi.value = '';
+    }
+  }
+  fi.addEventListener('change', () => handleFile(fi.files[0]));
+  ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('is-over'); }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('is-over'); }));
+  drop.addEventListener('drop', e => handleFile(e.dataTransfer && e.dataTransfer.files[0]));
+
+  refresh();
+}
+
+function flashSaved(btn){
+  const old = btn.textContent; btn.textContent = 'Saved ✓'; btn.classList.add('is-saved');
+  setTimeout(() => { btn.textContent = old; btn.classList.remove('is-saved'); }, 1400);
+}
+
+/* =========================================================
+   Initial render
+   ========================================================= */
+document.fonts && document.fonts.ready && document.fonts.ready.then(() => {
+  renderAll();
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  setTimeout(renderAll, 0);
+} else {
+  window.addEventListener('DOMContentLoaded', renderAll);
+}
+
+// Keyboard shortcut: Ctrl/⌘+Shift+A to open admin
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'a' || e.key === 'A')) {
+    e.preventDefault();
+    $('#adminLaunch').click();
+  }
+});
+
+})();
+</script>
+</body>
+</html>
