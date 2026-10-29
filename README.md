@@ -2,7 +2,7 @@
 
 **A production static storefront for a Palawan food distributor — with a content editor built into the page.**
 
-A single-file, zero-dependency website for a frozen food and imported meats business serving homes, restaurants, resorts and retailers across Puerto Princesa and the wider Palawan archipelago. It pairs a premium editorial storefront with a 16-tab content manager, so the business can rewrite its own site without a developer, a CMS subscription or a database.
+A zero-dependency website for a frozen food and imported meats business serving homes, restaurants, resorts and retailers across Puerto Princesa and the wider Palawan archipelago. It pairs a premium editorial storefront with a 16-tab content manager, so the business can rewrite its own site without a developer, a CMS subscription or a database.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
@@ -10,7 +10,6 @@ A single-file, zero-dependency website for a frozen food and imported meats busi
 ![No dependencies](https://img.shields.io/badge/dependencies-none-1E8E4A?style=flat-square)
 ![No build step](https://img.shields.io/badge/build_step-none-1E8E4A?style=flat-square)
 ![Accessibility](https://img.shields.io/badge/accessibility-WCAG--oriented-0F1115?style=flat-square)
-![Single file](https://img.shields.io/badge/deploy-single_file-B3261E?style=flat-square)
 
 ---
 
@@ -18,14 +17,14 @@ A single-file, zero-dependency website for a frozen food and imported meats busi
 
 JayCee Trading & Services is a family-owned distributor shipping imported meats, frozen seafood, dairy and frozen essentials across Palawan since 2017. The website's job is narrow and commercial: establish trust in a brand most customers meet at a warehouse gate, show the range at a glance, and make a wholesale enquiry effortless on a phone with a slow connection.
 
-That brief drove every technical decision. There is no framework, no bundler and no server. The entire site — styles, markup, behavior and content management — is one `index.html` you can drop on any static host.
+That brief drove every technical decision. There is no framework, no bundler and no server. Three files — one document, one stylesheet, one script — drop onto any static host and run.
 
 | | |
 |---|---|
 | **Type** | Static marketing site + in-page content editor |
 | **Client** | JayCee Trading & Services, Puerto Princesa City, Palawan |
 | **Scope** | Design system, storefront, CMS, logo pipeline, responsive QA |
-| **Source** | 1 file · 3,363 lines · 192 KB |
+| **Source** | 3 files · 3,366 lines · 192 KB |
 | **Runtime** | Browser only — no backend, no build, no dependencies |
 
 ---
@@ -49,7 +48,7 @@ That brief drove every technical decision. There is no framework, no bundler and
 - **16 tabs** covering brand, logo, theme, navigation, hero, categories, featured, trusted-by, stories, essentials, story, location, FAQ, mid CTA, final CTA and footer
 - **Drag-to-reorder lists** with add, delete and per-item enable/disable
 - **Color swatches**, range sliders and toggles for theming and logo sizing
-- **Live re-render** on every change, auto-saved to the browser
+- **Save-gated editing** — text fields commit with one Save action per tab, then the page re-renders; structural changes (reorder, add, delete, logo approval) apply immediately
 - **JSON export / import** for backup and handoff
 - **Logo pipeline**: upload → canvas downscale → pixel inspection → three live previews → explicit approval gate
 
@@ -62,9 +61,9 @@ Opened with the floating button or `Ctrl` / `⌘` + `Shift` + `A`.
 | Layer | Choice | Notes |
 |---|---|---|
 | Markup | HTML5 | Semantic landmarks, 11 sections, 53 ARIA attributes |
-| Styling | Hand-authored CSS3 | 703 rules on a full design-token system — no framework, no preprocessor |
+| Styling | Hand-authored CSS3 | 703 rules on a full design-token system, in `styles/main.css` — no framework, no preprocessor |
 | Layout | CSS Grid + Flexbox | 13 media queries at 420 / 600 / 768 / 900 / 1024 px |
-| Behavior | Vanilla JavaScript (ES6+) | 92 functions across two strict-mode IIFEs; no modules, no transpiler |
+| Behavior | Vanilla JavaScript (ES6+) | 92 functions across two strict-mode IIFEs in `scripts/app.js`; no bundler, no transpiler |
 | Type | Google Fonts | Inter and Inter Tight, fluid `clamp()` scale (11 steps) |
 | Imagery | Unsplash + CSS fallbacks | Every image carries a hex fallback color |
 | Maps | Google Maps embed | Zero-config iframe plus deep-link |
@@ -78,12 +77,12 @@ Opened with the floating button or `Ctrl` / `⌘` + `Shift` + `A`.
 Measured by bytes of the actual source:
 
 ```
-JavaScript  ████████████████████████████████████████░░░░░░  57.2%   2,055 lines
-CSS         █████████████████████████░░░░░░░░░░░░░░░░░░░░░  34.7%     973 lines
-HTML        ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   8.0%     313 lines
+JavaScript  ████████████████████████████████████████░░░░░░  57.3%   2,062 lines
+CSS         █████████████████████████░░░░░░░░░░░░░░░░░░░░░  34.7%     974 lines
+HTML        ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   8.0%     330 lines
 ```
 
-Two notes for anyone reading the numbers closely. The JavaScript share is inflated by a 15.7 KB content model — plain data describing every headline, image and Q&A, not logic. And because the whole project is a single `.html` file, GitHub's linguist classifies it as 100% HTML; the split above counts the three code regions inside that file instead.
+These are the figures GitHub reports, because the code is split across real `.html`, `.css` and `.js` files rather than inlined into one document. One caveat for anyone reading closely: the JavaScript share is inflated by a 15.7 KB content model — plain data describing every headline, image and Q&A, not logic.
 
 ---
 
@@ -91,22 +90,16 @@ Two notes for anyone reading the numbers closely. The JavaScript share is inflat
 
 ```
 jaycee-final-oct29/
-├── index.html          # The entire application — styles, markup, storefront, editor
-├── README.md           # This document
-└── PROJECT-MAP.md      # Detailed annotated code tree and architecture notes
+├── index.html              # Document shell, landmarks and render targets  (330 lines)
+├── styles/
+│   └── main.css            # Design system, components, responsive, editor chrome  (974 lines)
+├── scripts/
+│   └── app.js              # Interaction layer, then state/render/CMS  (2,062 lines)
+├── README.md               # This document
+└── PROJECT-MAP.md          # Annotated code tree and architecture notes
 ```
 
-Inside `index.html`, in order:
-
-```
-1,588–1,793   Content model     Every string, image and price the site renders
-1,826–2,232   Render layer      16 render* functions, state → DOM
-2,350–3,338   Editor            16 tabs, field factories, logo pipeline
-1,301–1,562   Interaction       Nav, carousel, accordion, reveal, parallax
-   12–985     Design system     Tokens, components, responsive, editor chrome
-```
-
-`PROJECT-MAP.md` breaks this down line by line, including the state-to-render loop and the trade-offs behind the single-file approach.
+`PROJECT-MAP.md` breaks this down line by line, including the state-to-render loop and the reasoning behind a build-free architecture.
 
 ---
 
@@ -122,7 +115,7 @@ python -m http.server 8000
 
 Open <http://localhost:8000>.
 
-Any static host works unchanged — GitHub Pages, Netlify, Cloudflare Pages, S3, or a folder on shared hosting. Deploying is copying one file.
+Any static host works unchanged — GitHub Pages, Netlify, Cloudflare Pages, S3, or a folder on shared hosting. Deploying is copying three files.
 
 ---
 
@@ -136,7 +129,7 @@ DEFAULT (content model)  →  localStorage  →  renderAll()  →  DOM
                             editor forms  ←  buildPanel()
 ```
 
-Every edit saves to `localStorage` under `jaycee_site_state_v2` and re-renders the page. Because listeners are destroyed on each render, interaction wiring is isolated in separate `wire*()` helpers that re-bind afterward.
+Editing a text field mutates state in memory; pressing **Save changes** commits it to `localStorage` under `jaycee_site_state_v2` and re-renders the page. Structural actions — drag-reorder, add, delete, logo approve — commit on their own. Because listeners are destroyed on each render, interaction wiring is isolated in separate `wire*()` helpers that re-bind afterward.
 
 **Editing workflow.** Change content in the editor, hit **Export JSON**, and use that file as the source of truth for the next build — or import it back to restore a previous state at any time. To publish globally, the JSON is folded into the `DEFAULT` object at `index.html:1,588`, which is what every visitor receives.
 
@@ -162,10 +155,10 @@ Every edit saves to `localStorage` under `jaycee_site_state_v2` and re-renders t
 
 Known limitations, stated honestly:
 
+- [x] Split CSS and JavaScript into `styles/` and `scripts/` for cache granularity
 - [ ] Remove the unused Tailwind CDN script — currently a blocking request generating utilities nothing uses
 - [ ] Add Open Graph / Twitter cards and JSON-LD `LocalBusiness` + `FAQPage` structured data
 - [ ] Self-host and responsively serve product imagery instead of hot-linking Unsplash
-- [ ] Split CSS and JavaScript into `styles/` and `scripts/` for cache granularity
 - [ ] Add a "Download updated site" action to close the loop between editor and deployment
 - [ ] Click-to-load the map iframe to cut initial payload
 
