@@ -1,22 +1,23 @@
 # JayCee Trading & Services — Tech Stack & Code Tree
 
-> Generated from a full read of the repository at commit `212340b` (branch `arena/84cbffb6-jaycee-final-oct29`).
+> Generated from a full read of the repository at commit `212340b`.
 > Everything below was verified against the actual source, not the README's description.
+> Line references point at `index.html` in the repository root.
 
 ---
 
 ## 1. At a glance
 
-The repository is **two tracked files**:
+The product is **one file**:
 
 ```
 jaycee-final-oct29/
-├── README.md                                  # marketing/company profile (3.1 KB)
-└── premium-jaycee-website-rebuild.zip         # 192 KB archive
-    └── index.html                             # the ENTIRE application (192,075 bytes)
+├── index.html          # the ENTIRE application (192,075 bytes, 3,363 lines)
+├── README.md           # project profile
+└── PROJECT-MAP.md      # this document
 ```
 
-There is no `src/`, no `styles/`, no `scripts/`, no `assets/`, no package manager, no build system, and no test suite. The README's "Code Structure" section describes a folder layout that **does not exist in this repo** — it describes an aspirational structure for the extracted site.
+There is no `src/`, no `styles/`, no `scripts/`, no `assets/`, no package manager, no build system, and no test suite. The project was originally distributed as a `premium-jaycee-website-rebuild.zip` archive containing a single `index.html`; it is now extracted to the repository root.
 
 The whole product is a **single self-contained HTML document**: 3,363 lines, split into ~974 lines of inline CSS, ~1,090 lines of static markup, and ~2,060 lines of vanilla JS across two inline `<script>` blocks.
 
@@ -48,8 +49,7 @@ Not present: dependency manifests, locks, CI, linters, tests, analytics, service
 ## 3. Code tree — annotated
 
 ```
-premium-jaycee-website-rebuild.zip
-└── index.html                                            3,363 lines / 192 KB
+index.html                                                3,363 lines / 192 KB
     │
     ├── <head> ........................................... 1–11
     │   ├── meta charset / viewport / title / description
@@ -266,8 +266,8 @@ Accessibility is above the norm for this class of project: 53 ARIA attributes, `
 ## 7. Run locally
 
 ```bash
-unzip premium-jaycee-website-rebuild.zip -d site
-cd site
+git clone https://github.com/sanvicpalawan/jaycee-final-oct29.git
+cd jaycee-final-oct29
 python -m http.server 8000
 # open http://localhost:8000
 ```
